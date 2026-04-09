@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Godius GIS — Hotel Villa Índigo · Cartagena</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#030508;
+    --bg-surface:#070B14;
+    --bg-card:rgba(255,255,255,0.03);
+    --indigo:#6366F1;
+    --cyan:#22D3EE;
+    --purple:#A855F7;
+    --emerald:#10B981;
+    --amber:#F59E0B;
+    --rose:#F43F5E;
+    --text:#F1F5F9;
+    --muted:#94A3B8;
+    --border:rgba(255,255,255,0.08);
+  }
+  *{font-family:'Inter',sans-serif;margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--bg-deep);
+    color:var(--text);
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(99,102,241,0.12), transparent 50%),
+      radial-gradient(circle at 80% 100%, rgba(168,85,247,0.08), transparent 50%),
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+    background-attachment:fixed;
+  }
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    backdrop-filter:blur(12px);
+    border-radius:16px;
+    transition:border-color 0.3s;
+  }
+  .card:hover{border-color:rgba(99,102,241,0.25)}
+  .glow{box-shadow:0 0 60px rgba(99,102,241,0.12)}
+  .grad-text{
+    background:linear-gradient(135deg,#6366F1,#22D3EE,#A855F7);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .grad-text-gold{
+    background:linear-gradient(135deg,#F59E0B,#EF4444);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:4px 12px;border-radius:999px;
+    font-size:11px;font-weight:600;letter-spacing:0.03em;
+  }
+  .badge-primary{background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);color:#A5B4FC}
+  .badge-emerald{background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#6EE7B7}
+  .badge-amber{background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);color:#FCD34D}
+  .badge-rose{background:rgba(244,63,94,0.15);border:1px solid rgba(244,63,94,0.3);color:#FDA4AF}
+  .badge-purple{background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.3);color:#C4B5FD}
+  .pulse{animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+  .tab{cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .tab.active{
+    background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(34,211,238,0.08));
+    border-color:rgba(99,102,241,0.4)!important;
+    color:#fff;
+  }
+  .tab:hover:not(.active){color:#CBD5E1;background:rgba(255,255,255,0.03)}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .star{color:#FCD34D}
+  .bar{height:6px;border-radius:999px;transition:width 0.8s ease}
+  .bar-indigo{background:linear-gradient(90deg,#6366F1,#22D3EE)}
+  .bar-emerald{background:linear-gradient(90deg,#10B981,#34D399)}
+  .bar-amber{background:linear-gradient(90deg,#F59E0B,#FBBF24)}
+  .bar-rose{background:linear-gradient(90deg,#F43F5E,#FB7185)}
+  .progress-ring{width:80px;height:80px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center}
+  .alert-line{border-left:3px solid;padding-left:12px;padding-top:4px;padding-bottom:4px}
+  ::-webkit-scrollbar{width:6px;height:6px}
+  ::-webkit-scrollbar-thumb{background:rgba(99,102,241,0.3);border-radius:999px}
+  ::-webkit-scrollbar-track{background:transparent}
+  .competitor-row{transition:background 0.2s}
+  .competitor-row:hover{background:rgba(255,255,255,0.03)}
+  .sentiment-bar{height:24px;border-radius:8px;display:flex;overflow:hidden;gap:2px}
+  .sentiment-bar > div{border-radius:6px}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .tab-content.active{animation:fadeIn 0.3s ease}
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header class="border-b border-white/5 backdrop-blur-xl sticky top-0 z-50 bg-[#030508]/80">
+  <div class="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 via-cyan-400 to-purple-500 flex items-center justify-center font-bold text-lg shadow-lg shadow-indigo-500/20">G</div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-indigo-400 font-semibold uppercase tracking-widest">Godius GIS</span>
+          <span class="text-xs text-slate-600">·</span>
+          <span class="text-xs text-slate-500">Guest Intelligence System</span>
+        </div>
+        <div class="font-semibold text-lg -mt-0.5">Hotel Villa Índigo <span class="text-slate-500 font-normal text-sm">· Cartagena de Indias</span></div>
+      </div>
+    </div>
+    <div class="flex items-center gap-6">
+      <div class="text-right">
+        <div class="text-xs text-slate-500">Miércoles 9 de abril, 2026</div>
+        <div class="text-sm font-medium flex items-center justify-end gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 pulse"></span>
+          <span class="text-emerald-400">Sistema activo</span>
+        </div>
+      </div>
+      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-sm font-bold">CI</div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="max-w-[1440px] mx-auto px-6 flex gap-1 overflow-x-auto pb-0">
+    <button onclick="switchTab('overview')" class="tab active px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="overview">📊 Visión general</button>
+    <button onclick="switchTab('reputation')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="reputation">⭐ Reputación</button>
+    <button onclick="switchTab('competition')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="competition">📈 Competencia & Pricing</button>
+    <button onclick="switchTab('demand')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="demand">🔥 Demanda & Mercado</button>
+    <button onclick="switchTab('visibility')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="visibility">🔍 Visibilidad & SEO</button>
+    <button onclick="switchTab('insights')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="insights">🤖 Insights IA</button>
+  </div>
+</header>
+
+<main class="max-w-[1440px] mx-auto px-6 py-8">
+
+<!-- ═══════════════════ TAB 1: VISIÓN GENERAL ═══════════════════ -->
+<div class="tab-content active" id="tab-overview">
+
+  <!-- HERO INSIGHT IA -->
+  <div class="card glow p-6 mb-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-indigo-500/20 to-purple-500/10 blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-cyan-500/10 to-transparent blur-2xl"></div>
+    <div class="relative">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="badge badge-primary">🤖 BRIEFING IA · HOY 7:00 AM</span>
+        <span class="text-xs text-slate-500">Generado automáticamente · Próxima actualización 7:00 PM</span>
+      </div>
+      <h2 class="text-2xl font-bold mb-3 leading-snug">Buenos días Carlos. Tu hotel tiene <span class="grad-text">3 oportunidades</span> y <span class="grad-text-gold">1 alerta crítica</span> hoy.</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <div class="space-y-2">
+          <div class="flex items-start gap-2">
+            <span class="text-rose-400 mt-0.5">⚠</span>
+            <p class="text-sm text-slate-300"><strong class="text-rose-300">Reseña 2⭐ en Booking sin responder</strong> — María L. (España) se queja del ruido del aire acondicionado en la hab. 304. Lleva 4 horas. Respuesta IA lista para copiar.</p>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-amber-400 mt-0.5">📈</span>
+            <p class="text-sm text-slate-300"><strong class="text-amber-300">Festival "Cartagena es Magia" mañana</strong> — 10-12 abril. Tu competencia ya subió tarifas un 18%. Tú sigues a $185/noche. Recomendación: subir a $215-225.</p>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-start gap-2">
+            <span class="text-emerald-400 mt-0.5">🌟</span>
+            <p class="text-sm text-slate-300"><strong class="text-emerald-300">Tu rating en Google subió a 4.6</strong> — 3 reseñas 5⭐ esta semana. Estás 0.1 puntos sobre Casa Pestagua en Google por primera vez.</p>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-cyan-400 mt-0.5">✈</span>
+            <p class="text-sm text-slate-300"><strong class="text-cyan-300">+3 vuelos desde Miami esta semana</strong> vs semana anterior. Llegadas totales al aeropuerto Rafael Núñez: 847 pasajeros internacionales estimados.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 KPI CARDS -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <div class="card p-5">
+      <div class="text-xs text-slate-400 uppercase tracking-wider mb-2">Rating promedio</div>
+      <div class="flex items-end gap-2">
+        <div class="text-3xl font-bold">4.52</div>
+        <div class="text-emerald-400 text-sm font-semibold pb-1">↑ 0.08</div>
+      </div>
+      <div class="text-xs text-slate-500 mt-1">Promedio Google + Booking + TripAdvisor</div>
+      <div class="bar bar-emerald mt-3" style="width:90%"></div>
+    </div>
+    <div class="card p-5">
+      <div class="text-xs text-slate-400 uppercase tracking-wider mb-2">Reseñas 7 días</div>
+      <div class="flex items-end gap-2">
+        <div class="text-3xl font-bold">12</div>
+        <div class="text-amber-400 text-sm font-semibold pb-1">4 sin responder</div>
+      </div>
+      <div class="text-xs text-slate-500 mt-1">Google · Booking · TripAdvisor</div>
+      <div class="bar bar-amber mt-3" style="width:33%"></div>
+    </div>
+    <div class="card p-5">
+      <div class="text-xs text-slate-400 uppercase tracking-wider mb-2">Tu precio vs mercado</div>
+      <div class="flex items-end gap-2">
+        <div class="text-3xl font-bold">$185</div>
+        <div class="text-rose-400 text-sm font-semibold pb-1">−12%</div>
+      </div>
+      <div class="text-xs text-slate-500 mt-1">Mercado promedio: $210</div>
+      <div class="bar bar-rose mt-3" style="width:88%"></div>
+    </div>
+    <div class="card p-5">
+      <div class="text-xs text-slate-400 uppercase tracking-wider mb-2">Eventos próximos</div>
+      <div class="flex items-end gap-2">
+        <div class="text-3xl font-bold">3</div>
+        <div class="text-cyan-400 text-sm font-semibold pb-1">1 alto impacto</div>
+      </div>
+      <div class="text-xs text-slate-500 mt-1">Próximos 7 días en Cartagena</div>
+      <div class="bar bar-indigo mt-3" style="width:60%"></div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID: REPUTACIÓN + ALERTAS -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+
+    <!-- REPUTACIÓN RESUMEN -->
+    <div class="card p-6 lg:col-span-2">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h3 class="font-semibold text-lg">Reputación en vivo</h3>
+          <p class="text-xs text-slate-400">Última actualización hace 12 min</p>
+        </div>
+        <span class="badge badge-emerald"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>MONITOREANDO</span>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 mb-6">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xs text-slate-400">Google</span>
+            <span class="text-xs text-emerald-400 font-medium">↑ 0.1</span>
+          </div>
+          <div class="text-3xl font-bold">4.6<span class="text-base text-slate-500">/5</span></div>
+          <div class="text-xs text-slate-500 mt-1">284 reseñas</div>
+          <div class="bar bar-indigo mt-2" style="width:92%"></div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xs text-slate-400">Booking</span>
+            <span class="text-xs text-emerald-400 font-medium">↑ 0.1</span>
+          </div>
+          <div class="text-3xl font-bold">8.7<span class="text-base text-slate-500">/10</span></div>
+          <div class="text-xs text-slate-500 mt-1">196 reseñas</div>
+          <div class="bar bar-indigo mt-2" style="width:87%"></div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xs text-slate-400">TripAdvisor</span>
+            <span class="text-xs text-slate-500 font-medium">= 0.0</span>
+          </div>
+          <div class="text-3xl font-bold">4.5<span class="text-base text-slate-500">/5</span></div>
+          <div class="text-xs text-slate-500 mt-1">163 reseñas</div>
+          <div class="bar bar-indigo mt-2" style="width:90%"></div>
+        </div>
+      </div>
+
+      <!-- RESEÑA CRÍTICA -->
+      <div class="border-t border-white/5 pt-4">
+        <div class="text-xs text-slate-400 mb-3 uppercase tracking-wider">⚠ Requiere atención inmediata</div>
+        <div class="bg-rose-500/5 border border-rose-500/20 rounded-xl p-4">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-rose-400 font-bold">2.0</span>
+                <span class="star text-sm">★★☆☆☆</span>
+                <span class="text-xs text-slate-400">Booking · María L. · España</span>
+              </div>
+              <p class="text-sm text-slate-300 mt-2 leading-relaxed">"El aire acondicionado de la habitación 304 hizo ruido toda la noche. Avisamos en recepción pero no se solucionó. El desayuno excelente, eso sí."</p>
+            </div>
+            <span class="text-xs text-rose-400 font-medium whitespace-nowrap ml-4">Hace 4h</span>
+          </div>
+          <div class="mt-3 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
+            <div class="text-xs text-indigo-300 font-semibold mb-1">💡 RESPUESTA SUGERIDA POR IA</div>
+            <p class="text-xs text-slate-300 leading-relaxed">"Estimada María, lamentamos mucho la molestia con el aire acondicionado. Hemos programado la revisión técnica de la habitación 304 esta misma mañana. Nos alegra que el desayuno haya sido de su agrado. Nos encantaría tener la oportunidad de ofrecerle una mejor experiencia en su próxima visita."</p>
+          </div>
+          <div class="flex gap-2 mt-3">
+            <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">📋 Copiar respuesta</button>
+            <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition">🔗 Abrir en Booking</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALERTAS -->
+    <div class="card p-6">
+      <div class="flex items-center justify-between mb-5">
+        <h3 class="font-semibold text-lg">Alertas inteligentes</h3>
+        <span class="badge badge-amber">6 HOY</span>
+      </div>
+      <div class="space-y-4">
+        <div class="alert-line" style="border-color:#F43F5E">
+          <div class="text-xs text-rose-400 font-semibold uppercase">Crítico · Reputación</div>
+          <p class="text-sm mt-0.5">Reseña 2⭐ Booking sin responder · 4h</p>
+        </div>
+        <div class="alert-line" style="border-color:#F59E0B">
+          <div class="text-xs text-amber-400 font-semibold uppercase">Oportunidad · Pricing</div>
+          <p class="text-sm mt-0.5">Festival mañana, competencia +18%. Tu tarifa sin cambio.</p>
+        </div>
+        <div class="alert-line" style="border-color:#F59E0B">
+          <div class="text-xs text-amber-400 font-semibold uppercase">Patrón · Operaciones</div>
+          <p class="text-sm mt-0.5">Hab. 304 mencionada en 3 reseñas negativas este mes.</p>
+        </div>
+        <div class="alert-line" style="border-color:#22D3EE">
+          <div class="text-xs text-cyan-400 font-semibold uppercase">Tendencia · Demanda</div>
+          <p class="text-sm mt-0.5">+3 vuelos Miami esta semana vs anterior.</p>
+        </div>
+        <div class="alert-line" style="border-color:#10B981">
+          <div class="text-xs text-emerald-400 font-semibold uppercase">Logro · Reputación</div>
+          <p class="text-sm mt-0.5">Google Rating 4.6 — superas a Casa Pestagua por primera vez.</p>
+        </div>
+        <div class="alert-line" style="border-color:#A855F7">
+          <div class="text-xs text-purple-400 font-semibold uppercase">SEO · Visibilidad</div>
+          <p class="text-sm mt-0.5">"Hotel boutique Cartagena" — subiste de posición #8 a #6 en Maps.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK COMPETITION + DEMAND -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- COMPETENCIA QUICK -->
+    <div class="card p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-semibold text-lg">Competencia · Precios hoy</h3>
+        <span class="badge badge-primary">5 RIVALES</span>
+      </div>
+      <div class="space-y-2">
+        <div class="flex items-center justify-between p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/25">
+          <div>
+            <div class="font-semibold text-sm">Villa Índigo (tú)</div>
+            <div class="text-xs text-slate-400">Suite Estándar · Booking</div>
+          </div>
+          <div class="text-right">
+            <div class="text-lg font-bold text-indigo-300">$185</div>
+            <div class="text-xs text-rose-400">−12% vs mercado</div>
+          </div>
+        </div>
+        <div class="competitor-row flex items-center justify-between p-3 rounded-lg">
+          <div>
+            <div class="font-semibold text-sm">Casa San Agustín</div>
+            <div class="text-xs text-slate-400">Sold out sábado</div>
+          </div>
+          <div class="text-right">
+            <div class="text-lg font-bold">$345</div>
+            <div class="text-xs text-emerald-400">↑ $30 hoy</div>
+          </div>
+        </div>
+        <div class="competitor-row flex items-center justify-between p-3 rounded-lg">
+          <div>
+            <div class="font-semibold text-sm">Casa Pestagua</div>
+            <div class="text-xs text-slate-400">Sold out vie-dom</div>
+          </div>
+          <div class="text-right">
+            <div class="text-lg font-bold">$320</div>
+            <div class="text-xs text-emerald-400">↑ $45 hoy</div>
+          </div>
+        </div>
+        <div class="competitor-row flex items-center justify-between p-3 rounded-lg">
+          <div>
+            <div class="font-semibold text-sm">Sofitel Santa Clara</div>
+            <div class="text-xs text-slate-400">3 hab. disponibles</div>
+          </div>
+          <div class="text-right">
+            <div class="text-lg font-bold">$290</div>
+            <div class="text-xs text-emerald-400">↑ $25 hoy</div>
+          </div>
+        </div>
+        <div class="competitor-row flex items-center justify-between p-3 rounded-lg">
+          <div>
+            <div class="font-semibold text-sm">Hotel Quadrifolio</div>
+            <div class="text-xs text-slate-400">Sold out viernes</div>
+          </div>
+          <div class="text-right">
+            <div class="text-lg font-bold">$240</div>
+            <div class="text-xs text-emerald-400">↑ $20 hoy</div>
+          </div>
+        </div>
+        <div class="competitor-row flex items-center justify-between p-3 rounded-lg">
+          <div>
+            <div class="font-semibold text-sm">Bantú Boutique</div>
+            <div class="text-xs text-slate-400">Disponible</div>
+          </div>
+          <div class="text-right">
+            <div class="text-lg font-bold">$148</div>
+            <div class="text-xs text-amber-400">↑ $8 hoy</div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4 p-3 rounded-lg bg-gradient-to-br from-purple-500/10 to-indigo-500/10 border border-purple-500/20">
+        <div class="text-xs text-purple-300 font-semibold mb-1">💡 RECOMENDACIÓN IA</div>
+        <p class="text-xs text-slate-300 leading-relaxed">Estás 12% bajo mercado. 3 de 5 competidores están sold out para el finde del festival. Sube tarifa a <strong>$215-225</strong> para vie-dom. Podrías capturar <strong>~$1.200 extra en revenue</strong> este fin de semana.</p>
+      </div>
+    </div>
+
+    <!-- DEMANDA QUICK -->
+    <div class="card p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-semibold text-lg">Demanda · Próximos 7 días</h3>
+        <span class="badge badge-rose">ALTO IMPACTO</span>
+      </div>
+
+      <!-- EVENTO PRINCIPAL -->
+      <div class="p-4 rounded-xl bg-gradient-to-br from-amber-500/10 to-rose-500/5 border border-amber-500/20 mb-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="badge badge-amber">🎪 FESTIVAL</span>
+          <span class="text-xs text-amber-300 font-semibold">10-12 ABRIL</span>
+        </div>
+        <h4 class="font-semibold">Festival Internacional "Cartagena es Magia"</h4>
+        <p class="text-xs text-slate-400 mt-1">Centro de Convenciones · Estimado: 5.000+ asistentes</p>
+        <div class="flex gap-4 mt-3">
+          <div class="text-center">
+            <div class="text-lg font-bold text-amber-300">+18%</div>
+            <div class="text-xs text-slate-400">Competencia subió</div>
+          </div>
+          <div class="text-center">
+            <div class="text-lg font-bold text-rose-300">3/5</div>
+            <div class="text-xs text-slate-400">Rivales sold out</div>
+          </div>
+          <div class="text-center">
+            <div class="text-lg font-bold text-emerald-300">ALTA</div>
+            <div class="text-xs text-slate-400">Demanda esperada</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OTROS EVENTOS -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between p-3 rounded-lg bg-white/5">
+          <div class="flex items-center gap-3">
+            <span class="text-xl">💃</span>
+            <div>
+              <div class="text-sm font-medium">Día Internacional de la Danza</div>
+              <div class="text-xs text-slate-400">29 abril · Eventos en centro histórico</div>
+            </div>
+          </div>
+          <span class="badge badge-primary">MEDIA</span>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-lg bg-white/5">
+          <div class="flex items-center gap-3">
+            <span class="text-xl">🎵</span>
+            <div>
+              <div class="text-sm font-medium">J Balvin "Made in Cartagena"</div>
+              <div class="text-xs text-slate-400">9 mayo · Concierto masivo</div>
+            </div>
+          </div>
+          <span class="badge badge-rose">MUY ALTA</span>
+        </div>
+      </div>
+
+      <!-- VUELOS -->
+      <div class="mt-4 p-4 rounded-xl bg-cyan-500/5 border border-cyan-500/15">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-cyan-400">✈</span>
+          <span class="text-xs text-cyan-300 font-semibold uppercase tracking-wider">Llegadas aeropuerto esta semana</span>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="text-center">
+            <div class="text-lg font-bold">847</div>
+            <div class="text-xs text-slate-400">Internacionales</div>
+          </div>
+          <div class="text-center">
+            <div class="text-lg font-bold text-emerald-400">+14%</div>
+            <div class="text-xs text-slate-400">vs semana ant.</div>
+          </div>
+          <div class="text-center">
+            <div class="text-lg font-bold">MIA · FLL</div>
+            <div class="text-xs text-slate-400">Top orígenes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ TAB 2: REPUTACIÓN ═══════════════════ -->
+<div class="tab-content" id="tab-reputation">
+
+  <!-- RATINGS OVERVIEW -->
+  <div class="card p-6 mb-6">
+    <h3 class="font-semibold text-lg mb-6">Reputación en todas las plataformas</h3>
+    <div class="grid grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-medium">Google Business</span>
+          <span class="text-emerald-400 text-xs font-semibold">↑ 0.1 esta semana</span>
+        </div>
+        <div class="flex items-end gap-3 mb-3">
+          <div class="text-4xl font-bold">4.6</div>
+          <div class="text-slate-500 text-lg pb-1">/5</div>
+          <div class="star text-lg pb-1">★★★★★</div>
+        </div>
+        <div class="text-xs text-slate-400 mb-2">284 reseñas totales · 6 esta semana</div>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 text-xs"><span class="w-4 text-slate-400">5★</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-emerald h-2 rounded-full" style="width:68%"></div></div><span class="text-slate-500 w-8 text-right">68%</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-4 text-slate-400">4★</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-indigo h-2 rounded-full" style="width:19%"></div></div><span class="text-slate-500 w-8 text-right">19%</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-4 text-slate-400">3★</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-amber h-2 rounded-full" style="width:8%"></div></div><span class="text-slate-500 w-8 text-right">8%</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-4 text-slate-400">2★</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-rose h-2 rounded-full" style="width:3%"></div></div><span class="text-slate-500 w-8 text-right">3%</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-4 text-slate-400">1★</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-rose h-2 rounded-full" style="width:2%"></div></div><span class="text-slate-500 w-8 text-right">2%</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-medium">Booking.com</span>
+          <span class="text-emerald-400 text-xs font-semibold">↑ 0.1 esta semana</span>
+        </div>
+        <div class="flex items-end gap-3 mb-3">
+          <div class="text-4xl font-bold">8.7</div>
+          <div class="text-slate-500 text-lg pb-1">/10</div>
+          <span class="badge badge-emerald text-xs">Fabuloso</span>
+        </div>
+        <div class="text-xs text-slate-400 mb-2">196 reseñas totales · 4 esta semana</div>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 text-xs"><span class="w-16 text-slate-400">Limpieza</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-emerald h-2 rounded-full" style="width:92%"></div></div><span class="text-slate-500 w-6 text-right">9.2</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-16 text-slate-400">Ubicación</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-emerald h-2 rounded-full" style="width:95%"></div></div><span class="text-slate-500 w-6 text-right">9.5</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-16 text-slate-400">Servicio</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-indigo h-2 rounded-full" style="width:88%"></div></div><span class="text-slate-500 w-6 text-right">8.8</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-16 text-slate-400">Confort</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-indigo h-2 rounded-full" style="width:84%"></div></div><span class="text-slate-500 w-6 text-right">8.4</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-16 text-slate-400">WiFi</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-amber h-2 rounded-full" style="width:76%"></div></div><span class="text-slate-500 w-6 text-right">7.6</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-medium">TripAdvisor</span>
+          <span class="text-slate-500 text-xs font-semibold">= sin cambio</span>
+        </div>
+        <div class="flex items-end gap-3 mb-3">
+          <div class="text-4xl font-bold">4.5</div>
+          <div class="text-slate-500 text-lg pb-1">/5</div>
+          <span class="badge badge-emerald text-xs">Excelente</span>
+        </div>
+        <div class="text-xs text-slate-400 mb-2">163 reseñas totales · 2 esta semana</div>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 text-xs"><span class="w-16 text-slate-400">Ubicación</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-emerald h-2 rounded-full" style="width:96%"></div></div><span class="text-slate-500 w-6 text-right">4.8</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-16 text-slate-400">Sueño</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-indigo h-2 rounded-full" style="width:84%"></div></div><span class="text-slate-500 w-6 text-right">4.2</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-16 text-slate-400">Servicio</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-emerald h-2 rounded-full" style="width:90%"></div></div><span class="text-slate-500 w-6 text-right">4.5</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-16 text-slate-400">Limpieza</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-emerald h-2 rounded-full" style="width:92%"></div></div><span class="text-slate-500 w-6 text-right">4.6</span></div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-16 text-slate-400">Valor</span><div class="flex-1 bg-white/5 rounded-full h-2"><div class="bar-indigo h-2 rounded-full" style="width:86%"></div></div><span class="text-slate-500 w-6 text-right">4.3</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SENTIMENT ANALYSIS -->
+  <div class="card p-6 mb-6">
+    <h3 class="font-semibold text-lg mb-2">Análisis de sentimiento IA</h3>
+    <p class="text-xs text-slate-400 mb-5">Basado en 643 reseñas analizadas · Últimos 90 días</p>
+    <div class="grid grid-cols-2 gap-6">
+      <div class="space-y-3">
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="text-slate-300">Ubicación</span><span class="text-emerald-400">97% positivo</span></div>
+          <div class="sentiment-bar"><div class="bg-emerald-500/60" style="width:97%"></div><div class="bg-slate-700" style="width:3%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="text-slate-300">Desayuno</span><span class="text-emerald-400">91% positivo</span></div>
+          <div class="sentiment-bar"><div class="bg-emerald-500/60" style="width:91%"></div><div class="bg-amber-500/60" style="width:5%"></div><div class="bg-slate-700" style="width:4%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="text-slate-300">Staff / Servicio</span><span class="text-emerald-400">88% positivo</span></div>
+          <div class="sentiment-bar"><div class="bg-emerald-500/60" style="width:88%"></div><div class="bg-amber-500/60" style="width:7%"></div><div class="bg-rose-500/60" style="width:5%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="text-slate-300">Limpieza</span><span class="text-emerald-400">86% positivo</span></div>
+          <div class="sentiment-bar"><div class="bg-emerald-500/60" style="width:86%"></div><div class="bg-amber-500/60" style="width:8%"></div><div class="bg-rose-500/60" style="width:6%"></div></div>
+        </div>
+      </div>
+      <div class="space-y-3">
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="text-slate-300">Piscina / Rooftop</span><span class="text-emerald-400">84% positivo</span></div>
+          <div class="sentiment-bar"><div class="bg-emerald-500/60" style="width:84%"></div><div class="bg-amber-500/60" style="width:10%"></div><div class="bg-rose-500/60" style="width:6%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="text-slate-300">Habitación</span><span class="text-amber-400">72% positivo</span></div>
+          <div class="sentiment-bar"><div class="bg-emerald-500/60" style="width:72%"></div><div class="bg-amber-500/60" style="width:15%"></div><div class="bg-rose-500/60" style="width:13%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="text-slate-300">WiFi</span><span class="text-amber-400">61% positivo</span></div>
+          <div class="sentiment-bar"><div class="bg-emerald-500/60" style="width:61%"></div><div class="bg-amber-500/60" style="width:20%"></div><div class="bg-rose-500/60" style="width:19%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="text-slate-300">Aire acondicionado</span><span class="text-rose-400">48% positivo ⚠</span></div>
+          <div class="sentiment-bar"><div class="bg-emerald-500/60" style="width:48%"></div><div class="bg-amber-500/60" style="width:22%"></div><div class="bg-rose-500/60" style="width:30%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 p-3 rounded-lg bg-rose-500/10 border border-rose-500/20">
+      <div class="text-xs text-rose-300 font-semibold mb-1">🔍 PATRÓN DETECTADO</div>
+      <p class="text-xs text-slate-300">El aire acondicionado tiene un 30% de menciones negativas. Las habitaciones 304 y 412 concentran el 60% de estas quejas. Recomendación: revisar equipos de HVAC en esas unidades.</p>
+    </div>
+  </div>
+
+  <!-- REVIEWS PENDIENTES -->
+  <div class="card p-6">
+    <div class="flex items-center justify-between mb-5">
+      <h3 class="font-semibold text-lg">Reseñas pendientes de responder</h3>
+      <span class="badge badge-amber">4 PENDIENTES</span>
+    </div>
+    <div class="space-y-3">
+      <div class="bg-rose-500/5 border border-rose-500/20 rounded-xl p-4">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="flex items-center gap-2"><span class="text-rose-400 font-bold">2.0</span><span class="star text-sm">★★☆☆☆</span><span class="text-xs text-slate-400">Booking · María L. · ES</span></div>
+            <p class="text-sm text-slate-300 mt-1">"El aire acondicionado de la habitación 304 hizo ruido toda la noche..."</p>
+          </div>
+          <span class="text-xs text-rose-400 ml-4">4h</span>
+        </div>
+        <div class="flex gap-2 mt-3">
+          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300">📋 Copiar respuesta IA</button>
+          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300">🔗 Abrir en Booking</button>
+        </div>
+      </div>
+      <div class="bg-emerald-500/5 border border-emerald-500/20 rounded-xl p-4">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">5.0</span><span class="star text-sm">★★★★★</span><span class="text-xs text-slate-400">Google · James R. · US</span></div>
+            <p class="text-sm text-slate-300 mt-1">"Wonderful stay. Breakfast was outstanding and the rooftop view is unbeatable."</p>
+          </div>
+          <span class="text-xs text-slate-500 ml-4">6h</span>
+        </div>
+        <div class="flex gap-2 mt-3">
+          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300">📋 Copiar respuesta IA</button>
+          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300">🔗 Abrir en Google</button>
+        </div>
+      </div>
+      <div class="bg-emerald-500/5 border border-emerald-500/20 rounded-xl p-4">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">4.0</span><span class="star text-sm">★★★★☆</span><span class="text-xs text-slate-400">TripAdvisor · Claire D. · FR</span></div>
+            <p class="text-sm text-slate-300 mt-1">"Très bel hôtel colonial. La chambre était spacieuse mais le WiFi un peu lent."</p>
+          </div>
+          <span class="text-xs text-slate-500 ml-4">1d</span>
+        </div>
+        <div class="flex gap-2 mt-3">
+          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300">📋 Copiar respuesta IA (FR)</button>
+          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300">🔗 Abrir en TripAdvisor</button>
+        </div>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="flex items-center gap-2"><span class="text-indigo-400 font-bold">4.0</span><span class="star text-sm">★★★★☆</span><span class="text-xs text-slate-400">Google · Ana M. · CO</span></div>
+            <p class="text-sm text-slate-300 mt-1">"Muy lindo el hotel, la ubicación perfecta. El servicio de recepción puede mejorar un poco."</p>
+          </div>
+          <span class="text-xs text-slate-500 ml-4">2d</span>
+        </div>
+        <div class="flex gap-2 mt-3">
+          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300">📋 Copiar respuesta IA</button>
+          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300">🔗 Abrir en Google</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ TAB 3: COMPETENCIA ═══════════════════ -->
+<div class="tab-content" id="tab-competition">
+
+  <div class="card p-6 mb-6">
+    <div class="flex items-center justify-between mb-5">
+      <div>
+        <h3 class="font-semibold text-lg">Comparativa de precios en tiempo real</h3>
+        <p class="text-xs text-slate-400">Precios para esta noche · Suite/Habitación estándar · Actualizado hace 8 min</p>
+      </div>
+      <span class="badge badge-primary">MULTI-OTA</span>
+    </div>
+
+    <!-- TABLE -->
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="text-xs text-slate-400 uppercase tracking-wider border-b border-white/5">
+            <th class="text-left py-3 pr-4">Hotel</th>
+            <th class="text-center py-3 px-3">Booking</th>
+            <th class="text-center py-3 px-3">Expedia</th>
+            <th class="text-center py-3 px-3">Google</th>
+            <th class="text-center py-3 px-3">Rating</th>
+            <th class="text-center py-3 px-3">Disponibilidad</th>
+            <th class="text-center py-3 pl-3">Cambio 24h</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-white/5 bg-indigo-500/5">
+            <td class="py-4 pr-4"><div class="font-semibold text-indigo-300">Villa Índigo (tú)</div><div class="text-xs text-slate-500">Centro Histórico · 24 hab.</div></td>
+            <td class="text-center py-4 px-3 font-bold">$185</td>
+            <td class="text-center py-4 px-3 font-bold">$192</td>
+            <td class="text-center py-4 px-3 font-bold">$185</td>
+            <td class="text-center py-4 px-3"><span class="font-bold">8.7</span><span class="text-slate-500">/10</span></td>
+            <td class="text-center py-4 px-3"><span class="text-emerald-400">Disponible</span></td>
+            <td class="text-center py-4 pl-3 text-slate-500">—</td>
+          </tr>
+          <tr class="border-b border-white/5 competitor-row">
+            <td class="py-4 pr-4"><div class="font-semibold">Casa San Agustín</div><div class="text-xs text-slate-500">Centro · 31 hab. · 5⭐</div></td>
+            <td class="text-center py-4 px-3 font-bold">$345</td>
+            <td class="text-center py-4 px-3 font-bold">$358</td>
+            <td class="text-center py-4 px-3 font-bold">$345</td>
+            <td class="text-center py-4 px-3"><span class="font-bold">9.3</span><span class="text-slate-500">/10</span></td>
+            <td class="text-center py-4 px-3"><span class="text-rose-400">Sold out sáb</span></td>
+            <td class="text-center py-4 pl-3 text-emerald-400">↑ $30</td>
+          </tr>
+          <tr class="border-b border-white/5 competitor-row">
+            <td class="py-4 pr-4"><div class="font-semibold">Casa Pestagua</div><div class="text-xs text-slate-500">Centro · 11 suites · R&C</div></td>
+            <td class="text-center py-4 px-3 font-bold">$320</td>
+            <td class="text-center py-4 px-3 font-bold">$335</td>
+            <td class="text-center py-4 px-3 font-bold">$320</td>
+            <td class="text-center py-4 px-3"><span class="font-bold">9.1</span><span class="text-slate-500">/10</span></td>
+            <td class="text-center py-4 px-3"><span class="text-rose-400">Sold out vie-dom</span></td>
+            <td class="text-center py-4 pl-3 text-emerald-400">↑ $45</td>
+          </tr>
+          <tr class="border-b border-white/5 competitor-row">
+            <td class="py-4 pr-4"><div class="font-semibold">Sofitel Santa Clara</div><div class="text-xs text-slate-500">San Diego · 122 hab. · 5⭐</div></td>
+            <td class="text-center py-4 px-3 font-bold">$290</td>
+            <td class="text-center py-4 px-3 font-bold">$298</td>
+            <td class="text-center py-4 px-3 font-bold">$285</td>
+            <td class="text-center py-4 px-3"><span class="font-bold">9.0</span><span class="text-slate-500">/10</span></td>
+            <td class="text-center py-4 px-3"><span class="text-amber-400">3 hab.</span></td>
+            <td class="text-center py-4 pl-3 text-emerald-400">↑ $25</td>
+          </tr>
+          <tr class="border-b border-white/5 competitor-row">
+            <td class="py-4 pr-4"><div class="font-semibold">Hotel Quadrifolio</div><div class="text-xs text-slate-500">Centro · 8 hab.</div></td>
+            <td class="text-center py-4 px-3 font-bold">$240</td>
+            <td class="text-center py-4 px-3 font-bold">$240</td>
+            <td class="text-center py-4 px-3 font-bold">$235</td>
+            <td class="text-center py-4 px-3"><span class="font-bold">9.0</span><span class="text-slate-500">/10</span></td>
+            <td class="text-center py-4 px-3"><span class="text-rose-400">Sold out vie</span></td>
+            <td class="text-center py-4 pl-3 text-emerald-400">↑ $20</td>
+          </tr>
+          <tr class="competitor-row">
+            <td class="py-4 pr-4"><div class="font-semibold">Bantú Boutique</div><div class="text-xs text-slate-500">Centro · 18 hab.</div></td>
+            <td class="text-center py-4 px-3 font-bold">$148</td>
+            <td class="text-center py-4 px-3 font-bold">$155</td>
+            <td class="text-center py-4 px-3 font-bold">$148</td>
+            <td class="text-center py-4 px-3"><span class="font-bold">8.4</span><span class="text-slate-500">/10</span></td>
+            <td class="text-center py-4 px-3"><span class="text-emerald-400">Disponible</span></td>
+            <td class="text-center py-4 pl-3 text-emerald-400">↑ $8</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-5 p-4 rounded-lg bg-gradient-to-br from-purple-500/10 to-indigo-500/10 border border-purple-500/20">
+      <div class="text-xs text-purple-300 font-semibold mb-2">💡 ANÁLISIS IA DE PRICING</div>
+      <div class="space-y-2">
+        <p class="text-sm text-slate-300">• Tu precio medio ($185) está <strong class="text-rose-300">12% bajo el promedio del comp set ($210)</strong>. Todos los competidores subieron tarifas en las últimas 24h excepto tú.</p>
+        <p class="text-sm text-slate-300">• <strong class="text-amber-300">3 de 5 competidores están sold out</strong> para el fin de semana del festival. Hay demanda insatisfecha que podrías capturar.</p>
+        <p class="text-sm text-slate-300">• Recomendación: <strong class="text-emerald-300">sube a $215-225 para vie-dom</strong>. Con 24 habitaciones y competencia sold out, la demanda va a desbordarse hacia ti. Revenue extra estimado: <strong>~$1.200 este fin de semana</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RATING BENCHMARK -->
+  <div class="card p-6">
+    <h3 class="font-semibold text-lg mb-5">Benchmark de reputación vs competencia</h3>
+    <div class="space-y-4">
+      <div>
+        <div class="flex justify-between text-sm mb-1"><span>Casa San Agustín</span><span class="font-bold">9.3</span></div>
+        <div class="w-full bg-white/5 rounded-full h-3"><div class="bar-emerald h-3 rounded-full" style="width:93%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between text-sm mb-1"><span>Casa Pestagua</span><span class="font-bold">9.1</span></div>
+        <div class="w-full bg-white/5 rounded-full h-3"><div class="bar-emerald h-3 rounded-full" style="width:91%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between text-sm mb-1"><span>Sofitel Santa Clara</span><span class="font-bold">9.0</span></div>
+        <div class="w-full bg-white/5 rounded-full h-3"><div class="bar-indigo h-3 rounded-full" style="width:90%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between text-sm mb-1"><span>Hotel Quadrifolio</span><span class="font-bold">9.0</span></div>
+        <div class="w-full bg-white/5 rounded-full h-3"><div class="bar-indigo h-3 rounded-full" style="width:90%"></div></div>
+      </div>
+      <div class="bg-indigo-500/10 rounded-lg p-2 -mx-2">
+        <div class="flex justify-between text-sm mb-1 px-2"><span class="text-indigo-300 font-semibold">Villa Índigo (tú)</span><span class="font-bold text-indigo-300">8.7</span></div>
+        <div class="w-full bg-white/5 rounded-full h-3 mx-2" style="width:calc(100% - 16px)"><div class="bar-indigo h-3 rounded-full" style="width:87%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between text-sm mb-1"><span>Bantú Boutique</span><span class="font-bold">8.4</span></div>
+        <div class="w-full bg-white/5 rounded-full h-3"><div class="bar-amber h-3 rounded-full" style="width:84%"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ TAB 4: DEMANDA ═══════════════════ -->
+<div class="tab-content" id="tab-demand">
+
+  <!-- EVENTOS -->
+  <div class="card p-6 mb-6">
+    <div class="flex items-center justify-between mb-5">
+      <h3 class="font-semibold text-lg">Eventos y generadores de demanda</h3>
+      <span class="badge badge-primary">PRÓXIMOS 30 DÍAS</span>
+    </div>
+
+    <div class="space-y-4">
+      <!-- EVENTO 1 -->
+      <div class="p-5 rounded-xl bg-gradient-to-br from-amber-500/10 to-rose-500/5 border border-amber-500/25">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🎪</span>
+            <div>
+              <div class="font-semibold text-lg">Festival "Cartagena es Magia"</div>
+              <div class="text-xs text-slate-400">Centro de Convenciones · 10-12 abril 2026</div>
+            </div>
+          </div>
+          <span class="badge badge-rose">IMPACTO ALTO</span>
+        </div>
+        <div class="grid grid-cols-4 gap-4 mt-3">
+          <div class="p-3 rounded-lg bg-white/5 text-center">
+            <div class="text-xl font-bold text-amber-300">5.000+</div>
+            <div class="text-xs text-slate-400">Asistentes est.</div>
+          </div>
+          <div class="p-3 rounded-lg bg-white/5 text-center">
+            <div class="text-xl font-bold text-rose-300">3 días</div>
+            <div class="text-xs text-slate-400">Duración</div>
+          </div>
+          <div class="p-3 rounded-lg bg-white/5 text-center">
+            <div class="text-xl font-bold text-emerald-300">+18%</div>
+            <div class="text-xs text-slate-400">Subida mercado</div>
+          </div>
+          <div class="p-3 rounded-lg bg-white/5 text-center">
+            <div class="text-xl font-bold text-purple-300">MAÑANA</div>
+            <div class="text-xs text-slate-400">Empieza en</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTO 2 -->
+      <div class="p-4 rounded-xl border border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="text-xl">💃</span>
+          <div>
+            <div class="font-semibold">Día Internacional de la Danza</div>
+            <div class="text-xs text-slate-400">29 abril · Actividades en centro histórico</div>
+          </div>
+        </div>
+        <span class="badge badge-amber">MEDIO</span>
+      </div>
+
+      <!-- EVENTO 3 -->
+      <div class="p-4 rounded-xl border border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="text-xl">🎵</span>
+          <div>
+            <div class="font-semibold">J Balvin "Made in Cartagena"</div>
+            <div class="text-xs text-slate-400">9 mayo · Concierto masivo · Tickets agotándose</div>
+          </div>
+        </div>
+        <span class="badge badge-rose">MUY ALTO</span>
+      </div>
+
+      <!-- EVENTO 4 -->
+      <div class="p-4 rounded-xl border border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="text-xl">🎶</span>
+          <div>
+            <div class="font-semibold">Festival Mundial de Salsa y Bolero</div>
+            <div class="text-xs text-slate-400">Mayo 2026 · Fecha exacta por confirmar</div>
+          </div>
+        </div>
+        <span class="badge badge-amber">MEDIO</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VUELOS + TRENDS -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+    <div class="card p-6">
+      <h3 class="font-semibold text-lg mb-4">✈ Llegadas aeropuerto Rafael Núñez</h3>
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="p-4 rounded-lg bg-white/5 text-center">
+          <div class="text-2xl font-bold">847</div>
+          <div class="text-xs text-slate-400">Pasajeros internacionales / semana</div>
+        </div>
+        <div class="p-4 rounded-lg bg-white/5 text-center">
+          <div class="text-2xl font-bold text-emerald-400">+14%</div>
+          <div class="text-xs text-slate-400">vs semana anterior</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-400 uppercase tracking-wider mb-3">Top rutas internacionales</div>
+      <div class="space-y-2">
+        <div class="flex justify-between items-center text-sm p-2 rounded bg-white/5"><span>🇺🇸 Miami (MIA)</span><span class="font-bold">12 vuelos/sem</span><span class="text-emerald-400 text-xs">+3 vs ant.</span></div>
+        <div class="flex justify-between items-center text-sm p-2 rounded bg-white/5"><span>🇺🇸 Fort Lauderdale (FLL)</span><span class="font-bold">7 vuelos/sem</span><span class="text-slate-500 text-xs">= igual</span></div>
+        <div class="flex justify-between items-center text-sm p-2 rounded bg-white/5"><span>🇵🇦 Panamá (PTY)</span><span class="font-bold">5 vuelos/sem</span><span class="text-emerald-400 text-xs">+1 vs ant.</span></div>
+        <div class="flex justify-between items-center text-sm p-2 rounded bg-white/5"><span>🇪🇸 Madrid (MAD)</span><span class="font-bold">3 vuelos/sem</span><span class="text-slate-500 text-xs">= igual</span></div>
+      </div>
+    </div>
+
+    <div class="card p-6">
+      <h3 class="font-semibold text-lg mb-4">📊 Google Trends — Cartagena turismo</h3>
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between text-sm mb-1"><span>"hotel cartagena"</span><span class="text-emerald-400 font-semibold">↑ 23%</span></div>
+          <div class="w-full bg-white/5 rounded-full h-2"><div class="bar-emerald h-2 rounded-full" style="width:78%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-1"><span>"cartagena de indias vacaciones"</span><span class="text-emerald-400 font-semibold">↑ 18%</span></div>
+          <div class="w-full bg-white/5 rounded-full h-2"><div class="bar-indigo h-2 rounded-full" style="width:65%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-1"><span>"hotel boutique cartagena"</span><span class="text-emerald-400 font-semibold">↑ 31%</span></div>
+          <div class="w-full bg-white/5 rounded-full h-2"><div class="bar-emerald h-2 rounded-full" style="width:52%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-1"><span>"cartagena festival 2026"</span><span class="text-amber-400 font-semibold">↑ 156%</span></div>
+          <div class="w-full bg-white/5 rounded-full h-2"><div class="bar-amber h-2 rounded-full" style="width:95%"></div></div>
+        </div>
+      </div>
+      <div class="mt-5 text-xs text-slate-400">Variación vs mismo período mes anterior · Fuente: Google Trends</div>
+    </div>
+  </div>
+
+  <!-- NOTICIAS -->
+  <div class="card p-6">
+    <h3 class="font-semibold text-lg mb-4">📰 Noticias relevantes — Cartagena</h3>
+    <div class="space-y-3">
+      <div class="p-3 rounded-lg bg-white/5 flex items-start gap-3">
+        <span class="text-amber-400 mt-0.5">●</span>
+        <div>
+          <div class="text-sm font-medium">Alcaldía presenta agenda cultural 2026 con más de 200 eventos</div>
+          <div class="text-xs text-slate-400 mt-1">cartagena.gov.co · Hace 2 días · Impacto: turismo cultural todo el año</div>
+        </div>
+      </div>
+      <div class="p-3 rounded-lg bg-white/5 flex items-start gap-3">
+        <span class="text-cyan-400 mt-0.5">●</span>
+        <div>
+          <div class="text-sm font-medium">Avianca anuncia nueva ruta directa Lima–Cartagena desde junio</div>
+          <div class="text-xs text-slate-400 mt-1">portafolio.co · Hace 4 días · Impacto: nuevo mercado peruano</div>
+        </div>
+      </div>
+      <div class="p-3 rounded-lg bg-white/5 flex items-start gap-3">
+        <span class="text-emerald-400 mt-0.5">●</span>
+        <div>
+          <div class="text-sm font-medium">Cartagena entre los 10 destinos más buscados de Latinoamérica en 2026</div>
+          <div class="text-xs text-slate-400 mt-1">eltiempo.com · Hace 6 días · Impacto: posicionamiento internacional</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ TAB 5: VISIBILIDAD ═══════════════════ -->
+<div class="tab-content" id="tab-visibility">
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+    <!-- GOOGLE MAPS POSITION -->
+    <div class="card p-6">
+      <h3 class="font-semibold text-lg mb-5">Posición en Google Maps</h3>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+          <div>
+            <div class="text-sm font-medium">"hotel boutique cartagena"</div>
+            <div class="text-xs text-slate-400">1.200 búsquedas/mes</div>
+          </div>
+          <div class="text-right">
+            <div class="text-2xl font-bold text-emerald-400">#6</div>
+            <div class="text-xs text-emerald-400">↑ 2 posiciones</div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-lg bg-white/5">
+          <div>
+            <div class="text-sm font-medium">"hotel centro histórico cartagena"</div>
+            <div class="text-xs text-slate-400">880 búsquedas/mes</div>
+          </div>
+          <div class="text-right">
+            <div class="text-2xl font-bold">#4</div>
+            <div class="text-xs text-emerald-400">↑ 1</div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-lg bg-white/5">
+          <div>
+            <div class="text-sm font-medium">"hotel con piscina cartagena"</div>
+            <div class="text-xs text-slate-400">720 búsquedas/mes</div>
+          </div>
+          <div class="text-right">
+            <div class="text-2xl font-bold">#9</div>
+            <div class="text-xs text-slate-500">= sin cambio</div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-lg bg-white/5">
+          <div>
+            <div class="text-sm font-medium">"hotel lujo cartagena de indias"</div>
+            <div class="text-xs text-slate-400">540 búsquedas/mes</div>
+          </div>
+          <div class="text-right">
+            <div class="text-2xl font-bold">#12</div>
+            <div class="text-xs text-rose-400">↓ 1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GBP STATUS -->
+    <div class="card p-6">
+      <h3 class="font-semibold text-lg mb-5">Google Business Profile</h3>
+      <div class="space-y-3">
+        <div class="flex items-center justify-between p-3 rounded-lg bg-white/5">
+          <span class="text-sm">Perfil verificado</span>
+          <span class="text-emerald-400 font-semibold text-sm">✓ Sí</span>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-lg bg-white/5">
+          <span class="text-sm">Fotos publicadas</span>
+          <span class="font-semibold text-sm">47</span>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-lg bg-white/5">
+          <span class="text-sm">Última foto subida</span>
+          <span class="text-amber-400 font-semibold text-sm">Hace 34 días ⚠</span>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-lg bg-white/5">
+          <span class="text-sm">Horarios actualizados</span>
+          <span class="text-emerald-400 font-semibold text-sm">✓ Sí</span>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-lg bg-white/5">
+          <span class="text-sm">Preguntas sin responder</span>
+          <span class="text-rose-400 font-semibold text-sm">2 pendientes ⚠</span>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-lg bg-white/5">
+          <span class="text-sm">Posts GBP este mes</span>
+          <span class="text-amber-400 font-semibold text-sm">0 — debería ser 4+ ⚠</span>
+        </div>
+      </div>
+      <div class="mt-4 p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+        <div class="text-xs text-amber-300 font-semibold mb-1">💡 RECOMENDACIÓN</div>
+        <p class="text-xs text-slate-300">Tu perfil no tiene fotos nuevas en 34 días ni posts este mes. Google favorece perfiles activos. Sube 3-5 fotos del hotel y publica 1 post sobre el festival "Cartagena es Magia".</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OTA RANKING -->
+  <div class="card p-6">
+    <h3 class="font-semibold text-lg mb-5">Posición en OTAs — "Hotel Cartagena centro"</h3>
+    <div class="grid grid-cols-3 gap-6">
+      <div class="text-center">
+        <div class="text-xs text-slate-400 mb-2">Booking.com</div>
+        <div class="text-4xl font-bold">#14</div>
+        <div class="text-xs text-slate-500 mt-1">de 283 hoteles</div>
+        <div class="text-xs text-emerald-400 mt-1">↑ 3 posiciones este mes</div>
+      </div>
+      <div class="text-center">
+        <div class="text-xs text-slate-400 mb-2">TripAdvisor</div>
+        <div class="text-4xl font-bold">#18</div>
+        <div class="text-xs text-slate-500 mt-1">de 215 hoteles</div>
+        <div class="text-xs text-slate-500 mt-1">= sin cambio</div>
+      </div>
+      <div class="text-center">
+        <div class="text-xs text-slate-400 mb-2">Google Hotels</div>
+        <div class="text-4xl font-bold">#8</div>
+        <div class="text-xs text-slate-500 mt-1">resultados locales</div>
+        <div class="text-xs text-emerald-400 mt-1">↑ 1 posición</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ TAB 6: INSIGHTS IA ═══════════════════ -->
+<div class="tab-content" id="tab-insights">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="card glow p-6 mb-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-500/15 to-purple-500/10 blur-3xl"></div>
+    <div class="relative">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="badge badge-primary">🤖 RESUMEN EJECUTIVO · 9 ABRIL 2026</span>
+      </div>
+      <div class="prose prose-sm text-slate-300 space-y-3 max-w-none">
+        <p class="leading-relaxed">Hotel Villa Índigo cierra una buena semana en reputación: <strong class="text-emerald-300">Google Rating alcanza 4.6 por primera vez</strong>, superando a Casa Pestagua. Booking se mantiene estable en 8.7. El punto débil sigue siendo el WiFi (61% sentimiento positivo) y el aire acondicionado de las habitaciones 304 y 412.</p>
+        <p class="leading-relaxed">En pricing, <strong class="text-amber-300">estás infravalorado</strong>. Tu tarifa de $185 está 12% bajo el mercado ($210 promedio). Con el Festival "Cartagena es Magia" mañana y 3 competidores sold out, estás dejando dinero en la mesa. Subir a $215-225 para el finde es la decisión más urgente hoy.</p>
+        <p class="leading-relaxed">La demanda general de Cartagena va en aumento: búsquedas de "hotel boutique cartagena" <strong class="text-emerald-300">+31% vs mes anterior</strong>, vuelos desde Miami +25%, y la alcaldía acaba de confirmar 200+ eventos culturales para el año. El concierto de J Balvin el 9 de mayo será el siguiente pico grande — prepara tarifas con al menos 2 semanas de anticipación.</p>
+        <p class="leading-relaxed">En visibilidad, subiste a <strong class="text-emerald-300">posición #6 en Google Maps</strong> para "hotel boutique cartagena". Pero tu perfil de Google Business lleva 34 días sin fotos nuevas y 0 posts este mes. Eso frena tu escalada.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="card p-6 mb-6">
+    <h3 class="font-semibold text-lg mb-5">Recomendaciones priorizadas</h3>
+    <div class="space-y-4">
+      <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="badge badge-rose">URGENTE</span>
+          <span class="text-sm font-semibold">Responder reseña 2⭐ en Booking</span>
+        </div>
+        <p class="text-sm text-slate-300">Lleva 4 horas sin respuesta. Cada hora que pasa aumenta el impacto negativo. Respuesta IA lista en la pestaña de Reputación.</p>
+      </div>
+      <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="badge badge-amber">HOY</span>
+          <span class="text-sm font-semibold">Subir tarifas para el fin de semana</span>
+        </div>
+        <p class="text-sm text-slate-300">Festival mañana, 3 competidores sold out, tu precio 12% bajo mercado. Sube a $215-225 USD para vie-dom. Revenue extra estimado: ~$1.200.</p>
+      </div>
+      <div class="p-4 rounded-xl bg-cyan-500/5 border border-cyan-500/20">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="badge badge-primary">ESTA SEMANA</span>
+          <span class="text-sm font-semibold">Actualizar Google Business Profile</span>
+        </div>
+        <p class="text-sm text-slate-300">Sube 3-5 fotos nuevas, publica 1 post sobre el festival, responde 2 preguntas pendientes. Esto puede subir tu posición de #6 a #4 en Maps.</p>
+      </div>
+      <div class="p-4 rounded-xl bg-purple-500/5 border border-purple-500/20">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="badge badge-purple">ESTE MES</span>
+          <span class="text-sm font-semibold">Revisar HVAC habitaciones 304 y 412</span>
+        </div>
+        <p class="text-sm text-slate-300">El aire acondicionado tiene 30% de menciones negativas en reseñas. Estas 2 habitaciones concentran el 60% de las quejas. Resolver esto podría subir el rating de Booking de 8.7 a 8.9+.</p>
+      </div>
+      <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="badge badge-primary">PRÓXIMO MES</span>
+          <span class="text-sm font-semibold">Preparar tarifas para J Balvin (9 mayo)</span>
+        </div>
+        <p class="text-sm text-slate-300">El concierto de J Balvin "Made in Cartagena" será el evento más grande del mes. Sube tarifas 2 semanas antes (última semana de abril). Impacto estimado: $3.000-5.000 en revenue extra.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEKLY REPORT PREVIEW -->
+  <div class="card p-6">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-semibold text-lg">Reporte semanal auto-generado</h3>
+      <span class="badge badge-primary">CADA LUNES 8 AM</span>
+    </div>
+    <div class="p-5 rounded-xl bg-white/5 border border-white/10">
+      <div class="text-xs text-slate-400 uppercase tracking-wider mb-3">Semana 31 marzo — 6 abril 2026</div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="text-center">
+          <div class="text-2xl font-bold text-emerald-400">+0.08</div>
+          <div class="text-xs text-slate-400">Rating promedio</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold">12</div>
+          <div class="text-xs text-slate-400">Reseñas nuevas</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-rose-400">−12%</div>
+          <div class="text-xs text-slate-400">vs mercado pricing</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-emerald-400">↑ 2</div>
+          <div class="text-xs text-slate-400">Posiciones Maps</div>
+        </div>
+      </div>
+      <div class="mt-4 flex gap-2">
+        <button class="px-4 py-2 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300">📄 Ver reporte completo</button>
+        <button class="px-4 py-2 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300">📧 Enviar por email</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="border-t border-white/5 mt-8">
+  <div class="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between text-xs text-slate-500">
+    <div class="flex items-center gap-6">
+      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Reviews monitoreando</span>
+      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Pricing activo</span>
+      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Eventos escaneando</span>
+      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>IA generando insights</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span>Godius GIS v1.0</span>
+      <span class="text-slate-600">·</span>
+      <span>Guest Intelligence System</span>
+      <span class="text-slate-600">·</span>
+      <span class="grad-text font-semibold">godius.io</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+<script>
+function switchTab(tabName) {
+  // Remove active from all tabs
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+  // Activate clicked tab
+  document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+  document.getElementById(`tab-${tabName}`).classList.add('active');
+
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
