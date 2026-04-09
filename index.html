@@ -1380,14 +1380,14 @@ function openCompetitor(id) {
         <div class="text-lg font-bold text-indigo-300">4.6</div>
         <div class="text-xs text-slate-500">Tú</div>
         <div class="text-lg font-bold mt-2">${c.google}</div>
-        <div class="text-xs ${4.6 >= c.google ? 'text-emerald-400' : 'text-rose-400'}">${4.6 >= c.google ? 'TÚ GANAS' : 'ELLOS'}</div>
+        <div class="text-xs ${4.6 > c.google ? 'text-emerald-400' : 4.6 < c.google ? 'text-rose-400' : 'text-slate-500'}">${4.6 > c.google ? 'TÚ GANAS' : 4.6 < c.google ? 'ELLOS' : 'EMPATE'}</div>
       </div>
       <div class="p-4 rounded-xl bg-white/5 text-center">
         <div class="text-xs text-slate-400 mb-2">TripAdvisor</div>
         <div class="text-lg font-bold text-indigo-300">4.5</div>
         <div class="text-xs text-slate-500">Tú</div>
         <div class="text-lg font-bold mt-2">${c.trip}</div>
-        <div class="text-xs ${4.5 >= c.trip ? 'text-emerald-400' : 'text-rose-400'}">${4.5 >= c.trip ? 'TÚ GANAS' : 'ELLOS'}</div>
+        <div class="text-xs ${4.5 > c.trip ? 'text-emerald-400' : 4.5 < c.trip ? 'text-rose-400' : 'text-slate-500'}">${4.5 > c.trip ? 'TÚ GANAS' : 4.5 < c.trip ? 'ELLOS' : 'EMPATE'}</div>
       </div>
     </div>
 
