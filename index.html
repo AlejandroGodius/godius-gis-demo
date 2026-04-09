@@ -5,101 +5,161 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Godius GIS — Hotel Villa Índigo · Cartagena</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        gold: { 50:'#FBF7F0', 100:'#F5EBDB', 200:'#E8D5B5', 300:'#D4B88A', 400:'#C8A96E', 500:'#B8924F', 600:'#9A7640', 700:'#7A5D33', 800:'#5C4526', 900:'#3D2E1A' },
+        surface: { 50:'#1C1917', 100:'#171412', 200:'#12100E', 300:'#0C0A09', 400:'#0A0908' }
+      }
+    }
+  }
+}
+</script>
 <style>
   :root{
-    --bg-deep:#030508;
-    --bg-surface:#070B14;
-    --bg-card:rgba(255,255,255,0.03);
-    --indigo:#6366F1;
-    --cyan:#22D3EE;
-    --purple:#A855F7;
-    --emerald:#10B981;
-    --amber:#F59E0B;
-    --rose:#F43F5E;
-    --text:#F1F5F9;
-    --muted:#94A3B8;
-    --border:rgba(255,255,255,0.08);
+    --bg-deep:#0C0A09;
+    --bg-surface:#12100E;
+    --bg-card:rgba(255,255,255,0.025);
+    --gold:#C8A96E;
+    --gold-light:#D4B88A;
+    --gold-dark:#9A7640;
+    --cream:#F5EBDB;
+    --emerald:#5B9A6F;
+    --amber:#C8A96E;
+    --rose:#C75B5B;
+    --text:#F0EBE3;
+    --text-secondary:#A8A093;
+    --muted:#7A7268;
+    --border:rgba(200,169,110,0.12);
   }
-  *{font-family:'Inter',sans-serif;margin:0;padding:0;box-sizing:border-box}
+  *{margin:0;padding:0;box-sizing:border-box}
   body{
+    font-family:'Inter',sans-serif;
     background:var(--bg-deep);
     color:var(--text);
     background-image:
-      radial-gradient(circle at 20% 0%, rgba(99,102,241,0.12), transparent 50%),
-      radial-gradient(circle at 80% 100%, rgba(168,85,247,0.08), transparent 50%),
-      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+      radial-gradient(circle at 20% 0%, rgba(200,169,110,0.06), transparent 50%),
+      radial-gradient(circle at 80% 100%, rgba(200,169,110,0.03), transparent 50%);
     background-attachment:fixed;
   }
+  h1,h2,h3,h4,.font-heading{font-family:'Space Grotesk','Inter',sans-serif}
   .card{
     background:var(--bg-card);
     border:1px solid var(--border);
     backdrop-filter:blur(12px);
-    border-radius:16px;
+    border-radius:12px;
     transition:border-color 0.3s;
   }
-  .card:hover{border-color:rgba(99,102,241,0.25)}
-  .glow{box-shadow:0 0 60px rgba(99,102,241,0.12)}
+  .card:hover{border-color:rgba(200,169,110,0.25)}
+  .glow{box-shadow:0 0 60px rgba(200,169,110,0.06)}
   .grad-text{
-    background:linear-gradient(135deg,#6366F1,#22D3EE,#A855F7);
+    background:linear-gradient(135deg,#C8A96E,#E8D5B5);
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .grad-text-gold{
-    background:linear-gradient(135deg,#F59E0B,#EF4444);
+    background:linear-gradient(135deg,#C75B5B,#E88B8B);
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .badge{
     display:inline-flex;align-items:center;gap:6px;
-    padding:4px 12px;border-radius:999px;
-    font-size:11px;font-weight:600;letter-spacing:0.03em;
+    padding:4px 12px;border-radius:6px;
+    font-size:11px;font-weight:600;letter-spacing:0.04em;
+    text-transform:uppercase;
   }
-  .badge-primary{background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);color:#A5B4FC}
-  .badge-emerald{background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#6EE7B7}
-  .badge-amber{background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);color:#FCD34D}
-  .badge-rose{background:rgba(244,63,94,0.15);border:1px solid rgba(244,63,94,0.3);color:#FDA4AF}
-  .badge-purple{background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.3);color:#C4B5FD}
+  .badge-primary{background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.25);color:#D4B88A}
+  .badge-emerald{background:rgba(91,154,111,0.12);border:1px solid rgba(91,154,111,0.25);color:#7AB88E}
+  .badge-amber{background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.25);color:#D4B88A}
+  .badge-rose{background:rgba(199,91,91,0.12);border:1px solid rgba(199,91,91,0.25);color:#E88B8B}
+  .badge-purple{background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.25);color:#D4B88A}
   .pulse{animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
   .tab{cursor:pointer;transition:all 0.2s;white-space:nowrap}
   .tab.active{
-    background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(34,211,238,0.08));
-    border-color:rgba(99,102,241,0.4)!important;
-    color:#fff;
+    background:rgba(200,169,110,0.1);
+    border-color:rgba(200,169,110,0.3)!important;
+    color:var(--cream);
   }
-  .tab:hover:not(.active){color:#CBD5E1;background:rgba(255,255,255,0.03)}
+  .tab:hover:not(.active){color:#D4B88A;background:rgba(200,169,110,0.05)}
   .tab-content{display:none}
   .tab-content.active{display:block}
-  .star{color:#FCD34D}
-  .bar{height:6px;border-radius:999px;transition:width 0.8s ease}
-  .bar-indigo{background:linear-gradient(90deg,#6366F1,#22D3EE)}
-  .bar-emerald{background:linear-gradient(90deg,#10B981,#34D399)}
-  .bar-amber{background:linear-gradient(90deg,#F59E0B,#FBBF24)}
-  .bar-rose{background:linear-gradient(90deg,#F43F5E,#FB7185)}
+  .star{color:#C8A96E}
+  .bar{height:5px;border-radius:999px;transition:width 0.8s ease}
+  .bar-indigo{background:linear-gradient(90deg,#C8A96E,#D4B88A)}
+  .bar-emerald{background:linear-gradient(90deg,#5B9A6F,#7AB88E)}
+  .bar-amber{background:linear-gradient(90deg,#C8A96E,#E8D5B5)}
+  .bar-rose{background:linear-gradient(90deg,#C75B5B,#E88B8B)}
   .progress-ring{width:80px;height:80px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center}
-  .alert-line{border-left:3px solid;padding-left:12px;padding-top:4px;padding-bottom:4px}
-  ::-webkit-scrollbar{width:6px;height:6px}
-  ::-webkit-scrollbar-thumb{background:rgba(99,102,241,0.3);border-radius:999px}
+  .alert-line{border-left:2px solid;padding-left:12px;padding-top:4px;padding-bottom:4px}
+  ::-webkit-scrollbar{width:5px;height:5px}
+  ::-webkit-scrollbar-thumb{background:rgba(200,169,110,0.25);border-radius:999px}
   ::-webkit-scrollbar-track{background:transparent}
   .competitor-row{transition:background 0.2s}
-  .competitor-row:hover{background:rgba(255,255,255,0.03)}
-  .sentiment-bar{height:24px;border-radius:8px;display:flex;overflow:hidden;gap:2px}
-  .sentiment-bar > div{border-radius:6px}
+  .competitor-row:hover{background:rgba(200,169,110,0.04)}
+  .sentiment-bar{height:22px;border-radius:6px;display:flex;overflow:hidden;gap:2px}
+  .sentiment-bar > div{border-radius:4px}
   @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
   .tab-content.active{animation:fadeIn 0.3s ease}
+
+  /* Premium overrides for inline colors */
+  .text-indigo-300,.text-indigo-400{color:#D4B88A!important}
+  .text-cyan-300,.text-cyan-400{color:#C8A96E!important}
+  .text-purple-300,.text-purple-400{color:#D4B88A!important}
+  .text-emerald-300,.text-emerald-400{color:#7AB88E!important}
+  .text-amber-300,.text-amber-400{color:#D4B88A!important}
+  .text-rose-300,.text-rose-400{color:#E88B8B!important}
+  .text-slate-300{color:#C4BAA8!important}
+  .text-slate-400{color:#A8A093!important}
+  .text-slate-500{color:#7A7268!important}
+  .text-slate-600{color:#5A5249!important}
+
+  .bg-indigo-500\/5,.bg-indigo-500\/10{background:rgba(200,169,110,0.06)!important}
+  .bg-indigo-500\/20{background:rgba(200,169,110,0.12)!important}
+  .border-indigo-500\/25,.border-indigo-500\/20,.border-indigo-500\/30,.border-indigo-500\/40{border-color:rgba(200,169,110,0.2)!important}
+  .bg-rose-500\/5{background:rgba(199,91,91,0.06)!important}
+  .bg-rose-500\/10{background:rgba(199,91,91,0.08)!important}
+  .border-rose-500\/20,.border-rose-500\/15{border-color:rgba(199,91,91,0.18)!important}
+  .bg-emerald-500\/5{background:rgba(91,154,111,0.06)!important}
+  .border-emerald-500\/20,.border-emerald-500\/15{border-color:rgba(91,154,111,0.18)!important}
+  .bg-amber-500\/5,.bg-amber-500\/10{background:rgba(200,169,110,0.06)!important}
+  .border-amber-500\/20,.border-amber-500\/25{border-color:rgba(200,169,110,0.18)!important}
+  .bg-cyan-500\/5{background:rgba(200,169,110,0.04)!important}
+  .border-cyan-500\/15{border-color:rgba(200,169,110,0.12)!important}
+  .bg-purple-500\/5,.bg-purple-500\/10{background:rgba(200,169,110,0.06)!important}
+  .border-purple-500\/20{border-color:rgba(200,169,110,0.18)!important}
+  .bg-white\/5{background:rgba(200,169,110,0.04)!important}
+  .bg-white\/10{background:rgba(200,169,110,0.06)!important}
+  .border-white\/5{border-color:rgba(200,169,110,0.08)!important}
+  .border-white\/10{border-color:rgba(200,169,110,0.12)!important}
+
+  .from-indigo-500{--tw-gradient-from:#C8A96E!important}
+  .via-cyan-400{--tw-gradient-via:#D4B88A!important}
+  .to-purple-500{--tw-gradient-to:#9A7640!important}
+  .from-purple-500\/10{--tw-gradient-from:rgba(200,169,110,0.06)!important}
+  .to-indigo-500\/10{--tw-gradient-to:rgba(200,169,110,0.06)!important}
+  .from-amber-500\/10{--tw-gradient-from:rgba(200,169,110,0.08)!important}
+  .to-rose-500\/5{--tw-gradient-to:rgba(199,91,91,0.04)!important}
+  .from-indigo-500\/10{--tw-gradient-from:rgba(200,169,110,0.06)!important}
+  .from-indigo-500\/15{--tw-gradient-from:rgba(200,169,110,0.08)!important}
+  .to-purple-500\/10{--tw-gradient-to:rgba(200,169,110,0.06)!important}
+  .shadow-indigo-500\/20{--tw-shadow-color:rgba(200,169,110,0.1)!important}
+
+  .bg-\[\#030508\]\/80{background:rgba(12,10,9,0.85)!important}
+  .bg-gradient-to-br.from-indigo-500.to-purple-500{background:linear-gradient(135deg,#C8A96E,#9A7640)!important}
 </style>
 </head>
 <body class="min-h-screen">
 
 <!-- ═══════════════════ HEADER ═══════════════════ -->
-<header class="border-b border-white/5 backdrop-blur-xl sticky top-0 z-50 bg-[#030508]/80">
+<header class="border-b border-white/5 backdrop-blur-xl sticky top-0 z-50" style="background:rgba(12,10,9,0.88)">
   <div class="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between">
     <div class="flex items-center gap-4">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 via-cyan-400 to-purple-500 flex items-center justify-center font-bold text-lg shadow-lg shadow-indigo-500/20">G</div>
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg font-heading" style="background:linear-gradient(135deg,#C8A96E,#9A7640);color:#0C0A09;box-shadow:0 4px 15px rgba(200,169,110,0.2)">G</div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="text-xs text-indigo-400 font-semibold uppercase tracking-widest">Godius GIS</span>
+          <span class="text-xs font-semibold uppercase tracking-widest font-heading" style="color:#C8A96E">Godius GIS</span>
           <span class="text-xs text-slate-600">·</span>
           <span class="text-xs text-slate-500">Guest Intelligence System</span>
         </div>
@@ -111,7 +171,7 @@
         <div class="text-xs text-slate-500">Miércoles 9 de abril, 2026</div>
         <div class="text-sm font-medium flex items-center justify-end gap-2">
           <span class="w-2 h-2 rounded-full bg-emerald-400 pulse"></span>
-          <span class="text-emerald-400">Sistema activo</span>
+          <span style="color:#7AB88E">Sistema activo</span>
         </div>
       </div>
       <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-sm font-bold">CI</div>
@@ -135,12 +195,12 @@
 <div class="tab-content active" id="tab-overview">
 
   <!-- NEURO BANNER -->
-  <div class="mb-6 p-4 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-purple-500/8 to-cyan-500/10 border border-indigo-500/20 relative overflow-hidden">
-    <div class="absolute -right-8 -top-8 w-32 h-32 bg-purple-500/10 blur-3xl rounded-full"></div>
+  <div class="mb-6 p-4 rounded-xl border relative overflow-hidden" style="background:rgba(200,169,110,0.04);border-color:rgba(200,169,110,0.15)">
+    <div class="absolute -right-8 -top-8 w-32 h-32 blur-3xl rounded-full" style="background:rgba(200,169,110,0.06)"></div>
     <div class="relative flex items-center justify-between flex-wrap gap-3">
       <div>
-        <p class="text-sm text-slate-300 leading-relaxed"><span class="text-indigo-300 font-semibold">Hilton tiene un equipo de 5 personas y 6 herramientas para saber esto.</span> Tú lo ves cada mañana en una sola pantalla.</p>
-        <p class="text-xs text-slate-500 mt-1">Revenue Manager · Rate Shopper · Reputation Manager · Market Intelligence · Demand Forecasting · BI Dashboard → <span class="text-indigo-400 font-semibold">Todo en GIS.</span></p>
+        <p class="text-sm leading-relaxed" style="color:#C4BAA8"><span class="font-semibold" style="color:#D4B88A">Hilton tiene un equipo de 5 personas y 6 herramientas para saber esto.</span> Tú lo ves cada mañana en una sola pantalla.</p>
+        <p class="text-xs mt-1" style="color:#7A7268">Revenue Manager · Rate Shopper · Reputation Manager · Market Intelligence · Demand Forecasting · BI Dashboard → <span class="font-semibold" style="color:#C8A96E">Todo en GIS.</span></p>
       </div>
     </div>
   </div>
@@ -1220,10 +1280,10 @@
 <!-- ═══════════════════ COMPETITOR MODAL ═══════════════════ -->
 <div id="competitorModal" class="fixed inset-0 z-[100] hidden" onclick="if(event.target===this)closeCompetitor()">
   <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-  <div class="relative max-w-4xl mx-auto mt-12 mb-12 max-h-[calc(100vh-96px)] overflow-y-auto rounded-2xl border border-white/10 bg-[#070B14] shadow-2xl shadow-indigo-500/10">
-    <div class="sticky top-0 z-10 bg-[#070B14]/95 backdrop-blur-xl border-b border-white/5 p-6 flex items-center justify-between">
+  <div class="relative max-w-4xl mx-auto mt-12 mb-12 max-h-[calc(100vh-96px)] overflow-y-auto rounded-xl border bg-[#12100E] shadow-2xl" style="border-color:rgba(200,169,110,0.15);box-shadow:0 25px 60px rgba(0,0,0,0.5)">
+    <div class="sticky top-0 z-10 backdrop-blur-xl border-b p-6 flex items-center justify-between" style="background:rgba(18,16,14,0.95);border-color:rgba(200,169,110,0.1)">
       <div>
-        <div class="text-xs text-indigo-400 font-semibold uppercase tracking-wider mb-1">ANÁLISIS COMPETITIVO IA</div>
+        <div class="text-xs font-semibold uppercase tracking-wider mb-1 font-heading" style="color:#C8A96E">ANÁLISIS COMPETITIVO IA</div>
         <h2 class="text-xl font-bold" id="modalTitle">Villa Índigo vs Casa Pestagua</h2>
       </div>
       <button onclick="closeCompetitor()" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition text-lg">✕</button>
