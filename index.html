@@ -1365,7 +1365,8 @@ function openCompetitor(id) {
         <div class="text-lg font-bold text-indigo-300">$185</div>
         <div class="text-xs text-slate-500">Tú</div>
         <div class="text-lg font-bold mt-2">$${c.price}</div>
-        <div class="text-xs text-slate-500">Ellos (${c.priceChange})</div>
+        <div class="text-xs text-slate-500">Ellos</div>
+        <div class="text-xs ${c.price > 185 ? 'text-rose-400' : 'text-emerald-400'} mt-1 font-semibold">${c.price > 185 ? 'Cobran ' + Math.round(((c.price-185)/185)*100) + '% más' : 'Cobran ' + Math.round(((185-c.price)/185)*100) + '% menos'}</div>
       </div>
       <div class="p-4 rounded-xl bg-white/5 text-center">
         <div class="text-xs text-slate-400 mb-2">Booking</div>
