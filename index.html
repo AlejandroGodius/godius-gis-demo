@@ -120,13 +120,13 @@
 
   <!-- TABS -->
   <div class="max-w-[1440px] mx-auto px-6 flex gap-1 overflow-x-auto pb-0">
-    <button onclick="switchTab('overview')" class="tab active px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="overview">📊 Visión general</button>
-    <button onclick="switchTab('reputation')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="reputation">⭐ Reputación</button>
-    <button onclick="switchTab('competition')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="competition">📈 Competencia & Pricing</button>
-    <button onclick="switchTab('demand')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="demand">🔥 Demanda & Mercado</button>
-    <button onclick="switchTab('visibility')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="visibility">🔍 Visibilidad & SEO</button>
-    <button onclick="switchTab('insights')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="insights">🤖 Insights IA</button>
-    <button onclick="switchTab('alerts')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="alerts">🔔 Alertas</button>
+    <button onclick="switchTab('overview')" class="tab active px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg flex items-center gap-2" data-tab="overview"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Visión general</button>
+    <button onclick="switchTab('reputation')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg flex items-center gap-2" data-tab="reputation"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Reputación</button>
+    <button onclick="switchTab('competition')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg flex items-center gap-2" data-tab="competition"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Competencia & Pricing</button>
+    <button onclick="switchTab('demand')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg flex items-center gap-2" data-tab="demand"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Demanda & Mercado</button>
+    <button onclick="switchTab('visibility')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg flex items-center gap-2" data-tab="visibility"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Visibilidad & SEO</button>
+    <button onclick="switchTab('insights')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg flex items-center gap-2" data-tab="insights"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg>Insights IA</button>
+    <button onclick="switchTab('alerts')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg flex items-center gap-2" data-tab="alerts"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Alertas</button>
   </div>
 </header>
 
@@ -146,28 +146,28 @@
     <div class="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-cyan-500/10 to-transparent blur-2xl"></div>
     <div class="relative">
       <div class="flex items-center gap-3 mb-4">
-        <span class="badge badge-primary">🤖 BRIEFING IA · HOY 7:00 AM</span>
+        <span class="badge badge-primary"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-1px"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg> BRIEFING IA · HOY 7:00 AM</span>
         <span class="text-xs text-slate-500">Generado automáticamente · Próxima actualización 7:00 PM</span>
       </div>
       <h2 class="text-2xl font-bold mb-3 leading-snug">Buenos días Carlos. Tu hotel tiene <span class="grad-text">3 oportunidades</span> y <span class="grad-text-gold">1 alerta crítica</span> hoy.</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         <div class="space-y-2">
           <div class="flex items-start gap-2">
-            <span class="text-rose-400 mt-0.5">⚠</span>
+            <span class="text-rose-400 mt-0.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
             <p class="text-sm text-slate-300"><strong class="text-rose-300">Reseña 2⭐ en Booking sin responder</strong> — María L. (España) se queja del ruido del aire acondicionado en la hab. 304. Lleva 4 horas. Respuesta IA lista para copiar.</p>
           </div>
           <div class="flex items-start gap-2">
-            <span class="text-amber-400 mt-0.5">📈</span>
+            <span class="text-amber-400 mt-0.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
             <p class="text-sm text-slate-300"><strong class="text-amber-300">Festival "Cartagena es Magia" mañana</strong> — 10-12 abril. Tu competencia ya subió tarifas un 18%. Tú sigues a $185/noche. Recomendación: subir a $215-225.</p>
           </div>
         </div>
         <div class="space-y-2">
           <div class="flex items-start gap-2">
-            <span class="text-emerald-400 mt-0.5">🌟</span>
+            <span class="text-emerald-400 mt-0.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
             <p class="text-sm text-slate-300"><strong class="text-emerald-300">Tu rating en Google subió a 4.6</strong> — 3 reseñas 5⭐ esta semana. Estás 0.1 puntos sobre Casa Pestagua en Google por primera vez.</p>
           </div>
           <div class="flex items-start gap-2">
-            <span class="text-cyan-400 mt-0.5">✈</span>
+            <span class="text-cyan-400 mt-0.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span>
             <p class="text-sm text-slate-300"><strong class="text-cyan-300">+3 vuelos desde Miami esta semana</strong> vs semana anterior. Llegadas totales al aeropuerto Rafael Núñez: 847 pasajeros internacionales estimados.</p>
           </div>
         </div>
@@ -274,11 +274,11 @@
             <span class="text-xs text-rose-400 font-medium whitespace-nowrap ml-4">Hace 4h</span>
           </div>
           <div class="mt-3 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
-            <div class="text-xs text-indigo-300 font-semibold mb-1">💡 RESPUESTA SUGERIDA POR IA</div>
+            <div class="text-xs text-indigo-300 font-semibold mb-1">RESPUESTA SUGERIDA POR IA</div>
             <p class="text-xs text-slate-300 leading-relaxed" id="resp0">Estimada María, lamentamos mucho la molestia con el aire acondicionado. Hemos programado la revisión técnica de la habitación 304 esta misma mañana. Nos alegra que el desayuno haya sido de su agrado. Nos encantaría tener la oportunidad de ofrecerle una mejor experiencia en su próxima visita. — Equipo Villa Índigo</p>
           </div>
           <div class="flex gap-2 mt-3">
-            <button onclick="copyResponse('resp0', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">📋 Copiar respuesta</button>
+            <button onclick="copyResponse('resp0', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">Copiar respuesta</button>
             <a href="https://admin.booking.com/hotel/hoteladmin/extranet_ng/manage/replies.html" target="_blank" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition inline-flex items-center gap-1">🔗 Abrir en Booking ↗</a>
           </div>
         </div>
@@ -391,7 +391,7 @@
         </div>
       </div>
       <div class="mt-4 p-3 rounded-lg bg-gradient-to-br from-purple-500/10 to-indigo-500/10 border border-purple-500/20">
-        <div class="text-xs text-purple-300 font-semibold mb-1">💡 RECOMENDACIÓN IA</div>
+        <div class="text-xs text-purple-300 font-semibold mb-1">RECOMENDACIÓN IA</div>
         <p class="text-xs text-slate-300 leading-relaxed">Estás 12% bajo mercado. 3 de 5 competidores están sold out para el finde del festival. Sube tarifa a <strong>$215-225</strong> para vie-dom. Podrías capturar <strong>~$1.200 extra en revenue</strong> este fin de semana.</p>
       </div>
     </div>
@@ -586,7 +586,7 @@
       </div>
     </div>
     <div class="mt-5 p-3 rounded-lg bg-rose-500/10 border border-rose-500/20">
-      <div class="text-xs text-rose-300 font-semibold mb-1">🔍 PATRÓN DETECTADO</div>
+      <div class="text-xs text-rose-300 font-semibold mb-1"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> PATRÓN DETECTADO</div>
       <p class="text-xs text-slate-300">El aire acondicionado tiene un 30% de menciones negativas. Las habitaciones 304 y 412 concentran el 60% de estas quejas. Recomendación: revisar equipos de HVAC en esas unidades.</p>
     </div>
   </div>
@@ -608,11 +608,11 @@
           <span class="text-xs text-rose-400 ml-4">4h</span>
         </div>
         <div class="mt-3 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
-          <div class="text-xs text-indigo-300 font-semibold mb-1">💡 RESPUESTA SUGERIDA</div>
+          <div class="text-xs text-indigo-300 font-semibold mb-1">RESPUESTA SUGERIDA</div>
           <p class="text-xs text-slate-300 leading-relaxed" id="resp1">Estimada María, lamentamos mucho la molestia con el aire acondicionado. Hemos programado la revisión técnica de la habitación 304 esta misma mañana. Nos alegra que el desayuno haya sido de su agrado. Nos encantaría tener la oportunidad de ofrecerle una mejor experiencia en su próxima visita. — Equipo Villa Índigo</p>
         </div>
         <div class="flex gap-2 mt-3">
-          <button onclick="copyResponse('resp1', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">📋 Copiar respuesta</button>
+          <button onclick="copyResponse('resp1', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">Copiar respuesta</button>
           <a href="https://admin.booking.com/hotel/hoteladmin/extranet_ng/manage/replies.html" target="_blank" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition inline-flex items-center gap-1">🔗 Abrir en Booking ↗</a>
         </div>
       </div>
@@ -627,11 +627,11 @@
           <span class="text-xs text-slate-500 ml-4">6h</span>
         </div>
         <div class="mt-3 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
-          <div class="text-xs text-indigo-300 font-semibold mb-1">💡 RESPUESTA SUGERIDA</div>
+          <div class="text-xs text-indigo-300 font-semibold mb-1">RESPUESTA SUGERIDA</div>
           <p class="text-xs text-slate-300 leading-relaxed" id="resp2">Thank you so much, James! We're thrilled you enjoyed the breakfast and our rooftop views — they're truly one of the best parts of staying with us. We look forward to welcoming you back to Cartagena. — Villa Índigo Team</p>
         </div>
         <div class="flex gap-2 mt-3">
-          <button onclick="copyResponse('resp2', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">📋 Copiar respuesta</button>
+          <button onclick="copyResponse('resp2', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">Copiar respuesta</button>
           <a href="https://business.google.com" target="_blank" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition inline-flex items-center gap-1">🔗 Abrir en Google ↗</a>
         </div>
       </div>
@@ -646,11 +646,11 @@
           <span class="text-xs text-slate-500 ml-4">1d</span>
         </div>
         <div class="mt-3 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
-          <div class="text-xs text-indigo-300 font-semibold mb-1">💡 RESPUESTA SUGERIDA (FR)</div>
+          <div class="text-xs text-indigo-300 font-semibold mb-1">RESPUESTA SUGERIDA (FR)</div>
           <p class="text-xs text-slate-300 leading-relaxed" id="resp3">Merci beaucoup Claire pour votre avis ! Nous sommes ravis que vous ayez apprécié notre architecture coloniale et l'espace de votre chambre. Nous travaillons actuellement à améliorer notre connexion WiFi pour offrir une meilleure expérience. Au plaisir de vous revoir à Cartagena. — Équipe Villa Índigo</p>
         </div>
         <div class="flex gap-2 mt-3">
-          <button onclick="copyResponse('resp3', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">📋 Copiar respuesta</button>
+          <button onclick="copyResponse('resp3', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">Copiar respuesta</button>
           <a href="https://www.tripadvisor.com/ManagementCenter" target="_blank" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition inline-flex items-center gap-1">🔗 Abrir en TripAdvisor ↗</a>
         </div>
       </div>
@@ -665,11 +665,11 @@
           <span class="text-xs text-slate-500 ml-4">2d</span>
         </div>
         <div class="mt-3 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
-          <div class="text-xs text-indigo-300 font-semibold mb-1">💡 RESPUESTA SUGERIDA</div>
+          <div class="text-xs text-indigo-300 font-semibold mb-1">RESPUESTA SUGERIDA</div>
           <p class="text-xs text-slate-300 leading-relaxed" id="resp4">¡Gracias por tu reseña, Ana! Nos encanta saber que disfrutaste de la ubicación y del hotel. Tomamos nota sobre el servicio de recepción — estamos trabajando en capacitaciones para ofrecer una atención aún más ágil. ¡Esperamos recibirte de nuevo pronto! — Equipo Villa Índigo</p>
         </div>
         <div class="flex gap-2 mt-3">
-          <button onclick="copyResponse('resp4', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">📋 Copiar respuesta</button>
+          <button onclick="copyResponse('resp4', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">Copiar respuesta</button>
           <a href="https://business.google.com" target="_blank" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition inline-flex items-center gap-1">🔗 Abrir en Google ↗</a>
         </div>
       </div>
@@ -763,7 +763,7 @@
     </div>
 
     <div class="mt-5 p-4 rounded-lg bg-gradient-to-br from-purple-500/10 to-indigo-500/10 border border-purple-500/20">
-      <div class="text-xs text-purple-300 font-semibold mb-2">💡 ANÁLISIS IA DE PRICING</div>
+      <div class="text-xs text-purple-300 font-semibold mb-2">ANÁLISIS IA DE PRICING</div>
       <div class="space-y-2">
         <p class="text-sm text-slate-300">• Tu precio medio ($185) está <strong class="text-rose-300">12% bajo el promedio del comp set ($210)</strong>. Todos los competidores subieron tarifas en las últimas 24h excepto tú.</p>
         <p class="text-sm text-slate-300">• <strong class="text-amber-300">3 de 5 competidores están sold out</strong> para el fin de semana del festival. Hay demanda insatisfecha que podrías capturar.</p>
@@ -909,7 +909,7 @@
     </div>
 
     <div class="card p-6">
-      <h3 class="font-semibold text-lg mb-4">📊 Google Trends — Cartagena turismo</h3>
+      <h3 class="font-semibold text-lg mb-4"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-2px"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Google Trends — Cartagena turismo</h3>
       <div class="space-y-4">
         <div>
           <div class="flex justify-between text-sm mb-1"><span>"hotel cartagena"</span><span class="text-emerald-400 font-semibold">↑ 23%</span></div>
@@ -1272,7 +1272,7 @@
     <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-500/15 to-purple-500/10 blur-3xl"></div>
     <div class="relative">
       <div class="flex items-center gap-3 mb-4">
-        <span class="badge badge-primary">🤖 RESUMEN EJECUTIVO · 9 ABRIL 2026</span>
+        <span class="badge badge-primary"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-1px"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg> RESUMEN EJECUTIVO · 9 ABRIL 2026</span>
       </div>
       <div class="prose prose-sm text-slate-300 space-y-3 max-w-none">
         <p class="leading-relaxed">Hotel Villa Índigo cierra una buena semana en reputación: <strong class="text-emerald-300">Google Rating alcanza 4.6 por primera vez</strong>, superando a Casa Pestagua. Booking se mantiene estable en 8.7. El punto débil sigue siendo el WiFi (61% sentimiento positivo) y el aire acondicionado de las habitaciones 304 y 412.</p>
@@ -2180,7 +2180,7 @@ function openCompetitor(id) {
     <!-- AI INSIGHT -->
     <div class="p-5 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/25">
       <div class="flex items-center gap-2 mb-3">
-        <span class="badge badge-primary">🤖 INSIGHT IA</span>
+        <span class="badge badge-primary"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-1px"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg> INSIGHT IA</span>
       </div>
       <p class="text-sm text-slate-200 leading-relaxed">${c.insight}</p>
     </div>
