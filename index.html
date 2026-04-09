@@ -695,8 +695,8 @@
             <td class="text-center py-4 px-3"><span class="text-emerald-400">Disponible</span></td>
             <td class="text-center py-4 pl-3 text-slate-500">—</td>
           </tr>
-          <tr class="border-b border-white/5 competitor-row">
-            <td class="py-4 pr-4"><div class="font-semibold">Casa San Agustín</div><div class="text-xs text-slate-500">Centro · 31 hab. · 5⭐</div></td>
+          <tr class="border-b border-white/5 competitor-row cursor-pointer" onclick="openCompetitor('sanagustin')">
+            <td class="py-4 pr-4"><div class="font-semibold">Casa San Agustín <span class="text-indigo-400 text-xs ml-1">→ ver análisis</span></div><div class="text-xs text-slate-500">Centro · 31 hab. · 5⭐</div></td>
             <td class="text-center py-4 px-3 font-bold">$345</td>
             <td class="text-center py-4 px-3 font-bold">$358</td>
             <td class="text-center py-4 px-3 font-bold">$345</td>
@@ -704,8 +704,8 @@
             <td class="text-center py-4 px-3"><span class="text-rose-400">Sold out sáb</span></td>
             <td class="text-center py-4 pl-3 text-emerald-400">↑ $30</td>
           </tr>
-          <tr class="border-b border-white/5 competitor-row">
-            <td class="py-4 pr-4"><div class="font-semibold">Casa Pestagua</div><div class="text-xs text-slate-500">Centro · 11 suites · R&C</div></td>
+          <tr class="border-b border-white/5 competitor-row cursor-pointer" onclick="openCompetitor('pestagua')">
+            <td class="py-4 pr-4"><div class="font-semibold">Casa Pestagua <span class="text-indigo-400 text-xs ml-1">→ ver análisis</span></div><div class="text-xs text-slate-500">Centro · 11 suites · R&C</div></td>
             <td class="text-center py-4 px-3 font-bold">$320</td>
             <td class="text-center py-4 px-3 font-bold">$335</td>
             <td class="text-center py-4 px-3 font-bold">$320</td>
@@ -713,8 +713,8 @@
             <td class="text-center py-4 px-3"><span class="text-rose-400">Sold out vie-dom</span></td>
             <td class="text-center py-4 pl-3 text-emerald-400">↑ $45</td>
           </tr>
-          <tr class="border-b border-white/5 competitor-row">
-            <td class="py-4 pr-4"><div class="font-semibold">Sofitel Santa Clara</div><div class="text-xs text-slate-500">San Diego · 122 hab. · 5⭐</div></td>
+          <tr class="border-b border-white/5 competitor-row cursor-pointer" onclick="openCompetitor('sofitel')">
+            <td class="py-4 pr-4"><div class="font-semibold">Sofitel Santa Clara <span class="text-indigo-400 text-xs ml-1">→ ver análisis</span></div><div class="text-xs text-slate-500">San Diego · 122 hab. · 5⭐</div></td>
             <td class="text-center py-4 px-3 font-bold">$290</td>
             <td class="text-center py-4 px-3 font-bold">$298</td>
             <td class="text-center py-4 px-3 font-bold">$285</td>
@@ -722,8 +722,8 @@
             <td class="text-center py-4 px-3"><span class="text-amber-400">3 hab.</span></td>
             <td class="text-center py-4 pl-3 text-emerald-400">↑ $25</td>
           </tr>
-          <tr class="border-b border-white/5 competitor-row">
-            <td class="py-4 pr-4"><div class="font-semibold">Hotel Quadrifolio</div><div class="text-xs text-slate-500">Centro · 8 hab.</div></td>
+          <tr class="border-b border-white/5 competitor-row cursor-pointer" onclick="openCompetitor('quadrifolio')">
+            <td class="py-4 pr-4"><div class="font-semibold">Hotel Quadrifolio <span class="text-indigo-400 text-xs ml-1">→ ver análisis</span></div><div class="text-xs text-slate-500">Centro · 8 hab.</div></td>
             <td class="text-center py-4 px-3 font-bold">$240</td>
             <td class="text-center py-4 px-3 font-bold">$240</td>
             <td class="text-center py-4 px-3 font-bold">$235</td>
@@ -731,8 +731,8 @@
             <td class="text-center py-4 px-3"><span class="text-rose-400">Sold out vie</span></td>
             <td class="text-center py-4 pl-3 text-emerald-400">↑ $20</td>
           </tr>
-          <tr class="competitor-row">
-            <td class="py-4 pr-4"><div class="font-semibold">Bantú Boutique</div><div class="text-xs text-slate-500">Centro · 18 hab.</div></td>
+          <tr class="competitor-row cursor-pointer" onclick="openCompetitor('bantu')">
+            <td class="py-4 pr-4"><div class="font-semibold">Bantú Boutique <span class="text-indigo-400 text-xs ml-1">→ ver análisis</span></div><div class="text-xs text-slate-500">Centro · 18 hab.</div></td>
             <td class="text-center py-4 px-3 font-bold">$148</td>
             <td class="text-center py-4 px-3 font-bold">$155</td>
             <td class="text-center py-4 px-3 font-bold">$148</td>
@@ -1217,20 +1217,271 @@
   </div>
 </footer>
 
+<!-- ═══════════════════ COMPETITOR MODAL ═══════════════════ -->
+<div id="competitorModal" class="fixed inset-0 z-[100] hidden" onclick="if(event.target===this)closeCompetitor()">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+  <div class="relative max-w-4xl mx-auto mt-12 mb-12 max-h-[calc(100vh-96px)] overflow-y-auto rounded-2xl border border-white/10 bg-[#070B14] shadow-2xl shadow-indigo-500/10">
+    <div class="sticky top-0 z-10 bg-[#070B14]/95 backdrop-blur-xl border-b border-white/5 p-6 flex items-center justify-between">
+      <div>
+        <div class="text-xs text-indigo-400 font-semibold uppercase tracking-wider mb-1">ANÁLISIS COMPETITIVO IA</div>
+        <h2 class="text-xl font-bold" id="modalTitle">Villa Índigo vs Casa Pestagua</h2>
+      </div>
+      <button onclick="closeCompetitor()" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition text-lg">✕</button>
+    </div>
+    <div class="p-6" id="modalContent"></div>
+  </div>
+</div>
+
 <!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
 <script>
 function switchTab(tabName) {
-  // Remove active from all tabs
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-
-  // Activate clicked tab
   document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
   document.getElementById(`tab-${tabName}`).classList.add('active');
-
-  // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+const competitors = {
+  pestagua: {
+    name: 'Casa Pestagua',
+    subtitle: 'Relais & Châteaux · 2 Michelin Keys · 11 suites',
+    price: 320, priceChange: '+$45',
+    booking: 9.1, google: 4.5, trip: 4.6, reviews: 312,
+    availability: 'Sold out vie-dom',
+    strengths: [
+      { cat: 'Servicio', them: 94, you: 88, icon: '👨‍💼' },
+      { cat: 'Habitación', them: 85, you: 72, icon: '🛏️' },
+      { cat: 'Exclusividad', them: 91, you: 74, icon: '👑' },
+    ],
+    weaknesses: [
+      { cat: 'Desayuno', them: 82, you: 91, icon: '🍳' },
+      { cat: 'Ubicación', them: 93, you: 97, icon: '📍' },
+      { cat: 'Calidad-precio', them: 61, you: 89, icon: '💰' },
+    ],
+    sentiment: { limpieza: 90, ubicacion: 93, servicio: 94, desayuno: 82, wifi: 68, habitacion: 85 },
+    lastReview: '"A beautiful historic mansion. Service impeccable but the room felt cold and overpriced for what it was." — TripAdvisor, 4★, US',
+    insight: 'Casa Pestagua cobra 73% más que tú con solo 0.4 puntos más de rating en Booking. Su mayor debilidad es relación calidad-precio (61% positivo vs tu 89%). Su fortaleza es la exclusividad y el servicio excepcional. Estrategia: destaca tu desayuno y relación calidad-precio en respuestas a reseñas. Los huéspedes que buscan valor sobre lujo extremo son TU mercado, no el de ellos.'
+  },
+  sanagustin: {
+    name: 'Casa San Agustín',
+    subtitle: 'El #1 de Cartagena · 31 habitaciones · 5⭐',
+    price: 345, priceChange: '+$30',
+    booking: 9.3, google: 4.7, trip: 4.7, reviews: 487,
+    availability: 'Sold out sáb',
+    strengths: [
+      { cat: 'Servicio', them: 96, you: 88, icon: '👨‍💼' },
+      { cat: 'Habitación', them: 91, you: 72, icon: '🛏️' },
+      { cat: 'Piscina', them: 93, you: 84, icon: '🏊' },
+    ],
+    weaknesses: [
+      { cat: 'Desayuno', them: 88, you: 91, icon: '🍳' },
+      { cat: 'Calidad-precio', them: 58, you: 89, icon: '💰' },
+      { cat: 'WiFi', them: 64, you: 61, icon: '📶' },
+    ],
+    sentiment: { limpieza: 94, ubicacion: 95, servicio: 96, desayuno: 88, wifi: 64, habitacion: 91 },
+    lastReview: '"Absolutely stunning property. The pool area is magical. Only criticism: the price is very steep for Cartagena standards." — Google, 4★, UK',
+    insight: 'Casa San Agustín es el benchmark del mercado — el hotel a batir. Cobra 86% más que tú con la mejor reputación de la ciudad. Pero su talón de Aquiles es claro: calidad-precio (58% positivo). Los turistas que lo visitan a menudo sienten que pagaron de más. Tu oportunidad: posiciónate como "la experiencia boutique de Cartagena sin el sobreprecio". Tu desayuno ya es mejor que el suyo.'
+  },
+  sofitel: {
+    name: 'Sofitel Legend Santa Clara',
+    subtitle: 'Cadena Accor Legend · 122 habitaciones · 5⭐',
+    price: 290, priceChange: '+$25',
+    booking: 9.0, google: 4.6, trip: 4.5, reviews: 1847,
+    availability: '3 hab. disponibles',
+    strengths: [
+      { cat: 'Spa', them: 92, you: 0, icon: '💆' },
+      { cat: 'Infraestructura', them: 94, you: 78, icon: '🏛️' },
+      { cat: 'Marca', them: 95, you: 65, icon: '🏷️' },
+    ],
+    weaknesses: [
+      { cat: 'Desayuno', them: 79, you: 91, icon: '🍳' },
+      { cat: 'Personalización', them: 62, you: 88, icon: '🤝' },
+      { cat: 'Calidad-precio', them: 65, you: 89, icon: '💰' },
+    ],
+    sentiment: { limpieza: 91, ubicacion: 94, servicio: 85, desayuno: 79, wifi: 72, habitacion: 88 },
+    lastReview: '"Beautiful hotel but it feels like a big chain, not a local experience. The breakfast buffet was average for the price." — Booking, 7.0, DE',
+    insight: 'Sofitel es tu competidor más interesante. Es una cadena internacional con 122 habitaciones — el opuesto de boutique. Sus reseñas muestran una queja recurrente: "se siente como cadena, no como experiencia local" (personalización 62%). Tú tienes 88% en personalización. Tu mensaje: "La experiencia auténtica de Cartagena que un hotel de cadena no puede darte." Además tu desayuno le gana 91% vs 79%.'
+  },
+  quadrifolio: {
+    name: 'Hotel Quadrifolio',
+    subtitle: 'Mansión colonial · 8 habitaciones · Boutique íntimo',
+    price: 240, priceChange: '+$20',
+    booking: 9.0, google: 4.6, trip: 4.5, reviews: 198,
+    availability: 'Sold out vie',
+    strengths: [
+      { cat: 'Intimidad', them: 95, you: 82, icon: '🤫' },
+      { cat: 'Habitación', them: 90, you: 72, icon: '🛏️' },
+      { cat: 'Arquitectura', them: 93, you: 85, icon: '🏛️' },
+    ],
+    weaknesses: [
+      { cat: 'Desayuno', them: 80, you: 91, icon: '🍳' },
+      { cat: 'Piscina', them: 72, you: 84, icon: '🏊' },
+      { cat: 'WiFi', them: 58, you: 61, icon: '📶' },
+    ],
+    sentiment: { limpieza: 92, ubicacion: 90, servicio: 91, desayuno: 80, wifi: 58, habitacion: 90 },
+    lastReview: '"Charming small hotel with beautiful rooms. The breakfast was a bit limited and the pool is tiny." — TripAdvisor, 4★, FR',
+    insight: 'Quadrifolio es tu rival más directo — boutique pequeño, rango de precio cercano ($240 vs $185). Con solo 8 habitaciones, se llena rápido en temporada. Tus ventajas claras: mejor desayuno (91% vs 80%), mejor piscina (84% vs 72%), y $55 más barato. Su ventaja: habitaciones más cuidadas (90% vs 72%). Arregla los problemas de habitación (A/C, hab 304) y le ganas en todo.'
+  },
+  bantu: {
+    name: 'Bantú Hotel Boutique',
+    subtitle: 'Colonial siglo XVIII · 18 habitaciones · Boutique',
+    price: 148, priceChange: '+$8',
+    booking: 8.4, google: 4.3, trip: 4.2, reviews: 342,
+    availability: 'Disponible',
+    strengths: [
+      { cat: 'Precio', them: 92, you: 89, icon: '💰' },
+      { cat: 'Jacuzzi/Sauna', them: 85, you: 0, icon: '♨️' },
+    ],
+    weaknesses: [
+      { cat: 'Servicio', them: 76, you: 88, icon: '👨‍💼' },
+      { cat: 'Desayuno', them: 68, you: 91, icon: '🍳' },
+      { cat: 'Limpieza', them: 74, you: 86, icon: '🧹' },
+      { cat: 'WiFi', them: 52, you: 61, icon: '📶' },
+    ],
+    sentiment: { limpieza: 74, ubicacion: 88, servicio: 76, desayuno: 68, wifi: 52, habitacion: 71 },
+    lastReview: '"Nice colonial building but the room was not very clean and the breakfast was disappointing. Good value though." — Booking, 6.0, US',
+    insight: 'Bantú es tu competidor inferior — rating 8.4 vs tu 8.7, y tú le ganas en casi todas las categorías. NO es tu amenaza. Pero sí es tu referencia de suelo de precio: Bantú cobra $148 con calidad inferior. Tú a $185 ofreces mucho más valor. Nunca bajes de $170 — no compitas en precio con Bantú, compites en experiencia con Quadrifolio y Pestagua.'
+  }
+};
+
+function openCompetitor(id) {
+  const c = competitors[id];
+  const m = document.getElementById('competitorModal');
+  document.getElementById('modalTitle').textContent = `Villa Índigo vs ${c.name}`;
+
+  const youRating = 8.7;
+  const diffBooking = (youRating - c.booking).toFixed(1);
+  const diffSign = diffBooking > 0 ? '+' : '';
+  const diffColor = diffBooking > 0 ? 'text-emerald-400' : 'text-rose-400';
+
+  let html = `
+    <p class="text-sm text-slate-400 mb-6">${c.subtitle} · ${c.reviews} reseñas · ${c.availability}</p>
+
+    <!-- RATINGS HEAD TO HEAD -->
+    <div class="grid grid-cols-4 gap-4 mb-6">
+      <div class="p-4 rounded-xl bg-white/5 text-center">
+        <div class="text-xs text-slate-400 mb-2">Precio hoy</div>
+        <div class="text-lg font-bold text-indigo-300">$185</div>
+        <div class="text-xs text-slate-500">Tú</div>
+        <div class="text-lg font-bold mt-2">$${c.price}</div>
+        <div class="text-xs text-slate-500">Ellos (${c.priceChange})</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white/5 text-center">
+        <div class="text-xs text-slate-400 mb-2">Booking</div>
+        <div class="text-lg font-bold text-indigo-300">8.7</div>
+        <div class="text-xs text-slate-500">Tú</div>
+        <div class="text-lg font-bold mt-2">${c.booking}</div>
+        <div class="text-xs ${diffColor}">${diffSign}${diffBooking}</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white/5 text-center">
+        <div class="text-xs text-slate-400 mb-2">Google</div>
+        <div class="text-lg font-bold text-indigo-300">4.6</div>
+        <div class="text-xs text-slate-500">Tú</div>
+        <div class="text-lg font-bold mt-2">${c.google}</div>
+        <div class="text-xs ${4.6 >= c.google ? 'text-emerald-400' : 'text-rose-400'}">${4.6 >= c.google ? 'TÚ GANAS' : 'ELLOS'}</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white/5 text-center">
+        <div class="text-xs text-slate-400 mb-2">TripAdvisor</div>
+        <div class="text-lg font-bold text-indigo-300">4.5</div>
+        <div class="text-xs text-slate-500">Tú</div>
+        <div class="text-lg font-bold mt-2">${c.trip}</div>
+        <div class="text-xs ${4.5 >= c.trip ? 'text-emerald-400' : 'text-rose-400'}">${4.5 >= c.trip ? 'TÚ GANAS' : 'ELLOS'}</div>
+      </div>
+    </div>
+
+    <!-- DONDE TE GANAN / DONDE LES GANAS -->
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <div class="p-5 rounded-xl bg-rose-500/5 border border-rose-500/15">
+        <h4 class="text-sm font-semibold text-rose-300 mb-3">⚠ Donde te ganan</h4>
+        <div class="space-y-3">
+          ${c.strengths.map(s => `
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span>${s.icon} ${s.cat}</span>
+                <span class="text-rose-400">Ellos ${s.them}% · Tú ${s.you}%</span>
+              </div>
+              <div class="flex gap-1 h-2">
+                <div class="rounded-full bg-rose-500/40" style="width:${s.them}%"></div>
+              </div>
+              <div class="flex gap-1 h-2 mt-1">
+                <div class="rounded-full bg-indigo-500/40" style="width:${s.you}%"></div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="p-5 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+        <h4 class="text-sm font-semibold text-emerald-300 mb-3">✓ Donde les ganas</h4>
+        <div class="space-y-3">
+          ${c.weaknesses.map(w => `
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span>${w.icon} ${w.cat}</span>
+                <span class="text-emerald-400">Tú ${w.you}% · Ellos ${w.them}%</span>
+              </div>
+              <div class="flex gap-1 h-2">
+                <div class="rounded-full bg-emerald-500/40" style="width:${w.you}%"></div>
+              </div>
+              <div class="flex gap-1 h-2 mt-1">
+                <div class="rounded-full bg-slate-600/40" style="width:${w.them}%"></div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+
+    <!-- SENTIMENT COMPARISON -->
+    <div class="p-5 rounded-xl bg-white/5 border border-white/10 mb-6">
+      <h4 class="text-sm font-semibold mb-4">Sentiment comparado · % positivo en reseñas</h4>
+      <div class="space-y-2">
+        ${Object.entries(c.sentiment).map(([cat, val]) => {
+          const youVals = { limpieza: 86, ubicacion: 97, servicio: 88, desayuno: 91, wifi: 61, habitacion: 72 };
+          const youVal = youVals[cat];
+          const winner = youVal >= val;
+          const label = cat.charAt(0).toUpperCase() + cat.slice(1);
+          return `
+            <div class="grid grid-cols-[100px_1fr_40px_1fr_40px] gap-2 items-center text-xs">
+              <span class="text-slate-400">${label}</span>
+              <div class="bg-white/5 rounded-full h-2"><div class="h-2 rounded-full ${winner ? 'bg-emerald-500/60' : 'bg-indigo-500/40'}" style="width:${youVal}%"></div></div>
+              <span class="text-right ${winner ? 'text-emerald-400 font-semibold' : 'text-slate-400'}">${youVal}%</span>
+              <div class="bg-white/5 rounded-full h-2"><div class="h-2 rounded-full ${!winner ? 'bg-rose-500/50' : 'bg-slate-600/40'}" style="width:${val}%"></div></div>
+              <span class="text-right ${!winner ? 'text-rose-400 font-semibold' : 'text-slate-400'}">${val}%</span>
+            </div>`;
+        }).join('')}
+        <div class="grid grid-cols-[100px_1fr_40px_1fr_40px] gap-2 items-center text-xs text-slate-500 mt-2 border-t border-white/5 pt-2">
+          <span></span><span class="text-center">← Villa Índigo</span><span></span><span class="text-center">${c.name} →</span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAST REVIEW -->
+    <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-6">
+      <div class="text-xs text-slate-400 uppercase tracking-wider mb-2">Última reseña destacada de ${c.name}</div>
+      <p class="text-sm text-slate-300 italic leading-relaxed">${c.lastReview}</p>
+    </div>
+
+    <!-- AI INSIGHT -->
+    <div class="p-5 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/25">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge badge-primary">🤖 INSIGHT IA</span>
+      </div>
+      <p class="text-sm text-slate-200 leading-relaxed">${c.insight}</p>
+    </div>
+  `;
+
+  document.getElementById('modalContent').innerHTML = html;
+  m.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCompetitor() {
+  document.getElementById('competitorModal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCompetitor(); });
 </script>
 
 </body>
