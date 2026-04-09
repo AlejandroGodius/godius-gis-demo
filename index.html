@@ -126,6 +126,7 @@
     <button onclick="switchTab('demand')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="demand">🔥 Demanda & Mercado</button>
     <button onclick="switchTab('visibility')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="visibility">🔍 Visibilidad & SEO</button>
     <button onclick="switchTab('insights')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="insights">🤖 Insights IA</button>
+    <button onclick="switchTab('alerts')" class="tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-slate-400 rounded-t-lg" data-tab="alerts">🔔 Alertas</button>
   </div>
 </header>
 
@@ -1416,6 +1417,487 @@
       <p class="text-sm text-slate-400 max-w-xl mx-auto leading-relaxed mb-4">¿Quieres monitorear un competidor que no está en la lista? ¿Trackear una keyword específica de tu mercado? ¿Recibir alertas cuando un rival baje precios? ¿Ver datos de una fuente que solo tú conoces? Lo creamos para ti.</p>
       <p class="text-sm text-slate-300 max-w-lg mx-auto leading-relaxed mb-5">Esto no es un software genérico. Es <strong>tu sistema de inteligencia</strong>, construido alrededor de lo que tú necesitas saber cada mañana para tomar mejores decisiones que tu competencia.</p>
       <a href="https://godius.io" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold text-sm hover:opacity-90 transition shadow-lg shadow-indigo-500/20">Cuéntanos qué necesitas — lo hacemos realidad ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ TAB 7: ALERTAS ═══════════════════ -->
+<div class="tab-content" id="tab-alerts">
+
+  <!-- CANALES DE NOTIFICACIÓN -->
+  <div class="card p-6 mb-6">
+    <h3 class="font-semibold text-lg mb-2">Canales de notificación</h3>
+    <p class="text-xs text-slate-400 mb-5">Elige dónde quieres recibir las alertas. Puedes activar ambos.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="p-5 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">📧</span>
+            <div>
+              <div class="font-semibold">Email</div>
+              <div class="text-xs text-slate-400">Resumen con contexto completo</div>
+            </div>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-11 h-6 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
+          </label>
+        </div>
+        <div class="flex gap-2">
+          <input type="email" placeholder="director@hotelvillaindigo.com" class="flex-1 px-3 py-2 text-sm bg-white/5 border border-white/10 rounded-lg text-slate-300 placeholder-slate-500 focus:border-indigo-500/50 focus:outline-none">
+          <button class="px-4 py-2 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300">Guardar</button>
+        </div>
+        <div class="text-xs text-emerald-400 mt-2 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Conectado — carlos@villaindigo.com</div>
+      </div>
+      <div class="p-5 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">✈️</span>
+            <div>
+              <div class="font-semibold">Telegram</div>
+              <div class="text-xs text-slate-400">Notificación instantánea al móvil</div>
+            </div>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-11 h-6 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
+          </label>
+        </div>
+        <a href="#" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-[#229ED9]/20 border border-[#229ED9]/40 text-[#229ED9] hover:bg-[#229ED9]/30 transition">Conectar Telegram Bot →</a>
+        <div class="text-xs text-emerald-400 mt-2 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Conectado — @carlos_director</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTAS DE REPUTACIÓN -->
+  <div class="card p-6 mb-6">
+    <div class="flex items-center justify-between mb-5">
+      <div>
+        <h3 class="font-semibold text-lg">Alertas de reputación</h3>
+        <p class="text-xs text-slate-400">Sé el primero en saber qué dicen de tu hotel</p>
+      </div>
+      <span class="badge badge-emerald">4 ACTIVAS</span>
+    </div>
+    <div class="space-y-3">
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Reseña negativa nueva</div>
+            <div class="text-xs text-slate-400">Cuando llega una reseña de 1, 2 o 3 estrellas en cualquier plataforma</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Umbral:</span>
+          <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+            <option>≤ 3 estrellas</option>
+            <option>≤ 2 estrellas</option>
+            <option>≤ 1 estrella</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Rating general baja</div>
+            <div class="text-xs text-slate-400">Cuando tu promedio en alguna plataforma baja del umbral que definas</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Avisar si baja de:</span>
+          <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+            <option>8.5 Booking</option>
+            <option>8.0 Booking</option>
+            <option>4.5 Google</option>
+            <option>4.0 Google</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Patrón negativo detectado</div>
+            <div class="text-xs text-slate-400">Cuando la IA detecta que un tema (A/C, wifi, limpieza...) acumula quejas repetidas</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Tras:</span>
+          <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+            <option>3 menciones/mes</option>
+            <option>5 menciones/mes</option>
+            <option>10 menciones/mes</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Reseñas sin responder acumuladas</div>
+            <div class="text-xs text-slate-400">Cuando tienes más de X reseñas sin responder en total</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Más de:</span>
+          <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+            <option>3 sin responder</option>
+            <option>5 sin responder</option>
+            <option>10 sin responder</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTAS DE COMPETENCIA Y PRICING -->
+  <div class="card p-6 mb-6">
+    <div class="flex items-center justify-between mb-5">
+      <div>
+        <h3 class="font-semibold text-lg">Alertas de competencia y pricing</h3>
+        <p class="text-xs text-slate-400">No pierdas de vista lo que hace tu mercado</p>
+      </div>
+      <span class="badge badge-emerald">5 ACTIVAS</span>
+    </div>
+    <div class="space-y-3">
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Competidor cambió precio</div>
+            <div class="text-xs text-slate-400">Cuando cualquier rival sube o baja su tarifa más del umbral</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Cambio mayor a:</span>
+          <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+            <option>10%</option>
+            <option>15%</option>
+            <option>20%</option>
+            <option>$20</option>
+            <option>$50</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Competidor se queda sold out</div>
+            <div class="text-xs text-slate-400">Cuando un rival se llena — oportunidad para subir tu precio</div>
+          </div>
+        </div>
+        <span class="text-xs text-slate-500">Automático</span>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Estás por debajo del mercado</div>
+            <div class="text-xs text-slate-400">Cuando tu precio es inferior al promedio del comp set</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Más de:</span>
+          <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+            <option>10% bajo mercado</option>
+            <option>15% bajo mercado</option>
+            <option>20% bajo mercado</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Competidor supera tu rating</div>
+            <div class="text-xs text-slate-400">Cuando un rival que estaba por debajo te supera en alguna plataforma</div>
+          </div>
+        </div>
+        <span class="text-xs text-slate-500">Automático</span>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Nuevo competidor detectado</div>
+            <div class="text-xs text-slate-400">Cuando Google sugiere un hotel nuevo como alternativa a ti</div>
+          </div>
+        </div>
+        <span class="text-xs text-slate-500">Automático</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTAS DE DEMANDA Y MERCADO -->
+  <div class="card p-6 mb-6">
+    <div class="flex items-center justify-between mb-5">
+      <div>
+        <h3 class="font-semibold text-lg">Alertas de demanda y mercado</h3>
+        <p class="text-xs text-slate-400">Anticípate a lo que viene</p>
+      </div>
+      <span class="badge badge-emerald">4 ACTIVAS</span>
+    </div>
+    <div class="space-y-3">
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Evento de alto impacto detectado</div>
+            <div class="text-xs text-slate-400">Festival, concierto, conferencia o evento que moverá demanda en tu zona</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Avisar con:</span>
+          <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+            <option>2 semanas antes</option>
+            <option>1 semana antes</option>
+            <option>3 días antes</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Aumento inusual de vuelos</div>
+            <div class="text-xs text-slate-400">Cuando las llegadas internacionales suben más del umbral vs semana anterior</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Más de:</span>
+          <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+            <option>+15%</option>
+            <option>+25%</option>
+            <option>+50%</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Tu hotel mencionado en medios</div>
+            <div class="text-xs text-slate-400">Cuando tu hotel aparece en noticias, blogs de viaje o artículos online</div>
+          </div>
+        </div>
+        <span class="text-xs text-slate-500">Automático</span>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Búsquedas de tu destino suben</div>
+            <div class="text-xs text-slate-400">Cuando Google Trends detecta un pico de interés por Cartagena</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Más de:</span>
+          <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+            <option>+30%</option>
+            <option>+50%</option>
+            <option>+100%</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTAS DE VISIBILIDAD -->
+  <div class="card p-6 mb-6">
+    <div class="flex items-center justify-between mb-5">
+      <div>
+        <h3 class="font-semibold text-lg">Alertas de visibilidad</h3>
+        <p class="text-xs text-slate-400">Controla tu presencia online</p>
+      </div>
+      <span class="badge badge-emerald">3 ACTIVAS</span>
+    </div>
+    <div class="space-y-3">
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Caída en Google Maps</div>
+            <div class="text-xs text-slate-400">Cuando pierdes posiciones en alguna keyword que trackeas</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Si bajas más de:</span>
+          <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+            <option>2 posiciones</option>
+            <option>3 posiciones</option>
+            <option>5 posiciones</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Competidor sube en Maps por encima de ti</div>
+            <div class="text-xs text-slate-400">Cuando un rival que estaba debajo te adelanta en una keyword</div>
+          </div>
+        </div>
+        <span class="text-xs text-slate-500">Automático</span>
+      </div>
+      <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+          <div>
+            <div class="text-sm font-medium">Tasa de respuesta baja del objetivo</div>
+            <div class="text-xs text-slate-400">Cuando tu porcentaje de reseñas respondidas cae del umbral</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Si baja de:</span>
+          <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+            <option>80%</option>
+            <option>90%</option>
+            <option>95%</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRIEFING DIARIO -->
+  <div class="card p-6 mb-6">
+    <div class="flex items-center justify-between mb-5">
+      <div>
+        <h3 class="font-semibold text-lg">Briefing diario IA</h3>
+        <p class="text-xs text-slate-400">Resumen automático de todo lo que pasó — sin abrir el dashboard</p>
+      </div>
+      <span class="badge badge-emerald">ACTIVO</span>
+    </div>
+    <div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+      <div class="flex items-center gap-4">
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" checked class="sr-only peer">
+          <div class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:bg-indigo-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+        </label>
+        <div>
+          <div class="text-sm font-medium">Briefing matutino</div>
+          <div class="text-xs text-slate-400">Resumen completo: reputación, precios, eventos, alertas — todo en un mensaje</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs text-slate-400">Enviar a las:</span>
+        <select class="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-slate-300 focus:outline-none">
+          <option>7:00 AM</option>
+          <option>8:00 AM</option>
+          <option>9:00 AM</option>
+          <option>6:00 AM</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORIAL RECIENTE -->
+  <div class="card p-6">
+    <div class="flex items-center justify-between mb-5">
+      <h3 class="font-semibold text-lg">Últimas alertas enviadas</h3>
+      <span class="text-xs text-slate-400">Últimas 48 horas</span>
+    </div>
+    <div class="space-y-2">
+      <div class="flex items-center justify-between p-3 rounded-lg bg-rose-500/5 border border-rose-500/15">
+        <div class="flex items-center gap-3">
+          <span class="text-rose-400 text-xs">●</span>
+          <div>
+            <div class="text-sm">Reseña 2⭐ en Booking — María L.</div>
+            <div class="text-xs text-slate-400">Enviado a Email + Telegram</div>
+          </div>
+        </div>
+        <span class="text-xs text-slate-500">Hace 4h</span>
+      </div>
+      <div class="flex items-center justify-between p-3 rounded-lg bg-amber-500/5 border border-amber-500/15">
+        <div class="flex items-center gap-3">
+          <span class="text-amber-400 text-xs">●</span>
+          <div>
+            <div class="text-sm">Casa Pestagua subió precio +$45 (sold out vie-dom)</div>
+            <div class="text-xs text-slate-400">Enviado a Telegram</div>
+          </div>
+        </div>
+        <span class="text-xs text-slate-500">Hace 6h</span>
+      </div>
+      <div class="flex items-center justify-between p-3 rounded-lg bg-amber-500/5 border border-amber-500/15">
+        <div class="flex items-center gap-3">
+          <span class="text-amber-400 text-xs">●</span>
+          <div>
+            <div class="text-sm">Festival "Cartagena es Magia" — impacto alto, empieza mañana</div>
+            <div class="text-xs text-slate-400">Enviado a Email + Telegram</div>
+          </div>
+        </div>
+        <span class="text-xs text-slate-500">Hace 12h</span>
+      </div>
+      <div class="flex items-center justify-between p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
+        <div class="flex items-center gap-3">
+          <span class="text-emerald-400 text-xs">●</span>
+          <div>
+            <div class="text-sm">Briefing diario — 9 abril 2026</div>
+            <div class="text-xs text-slate-400">Enviado a Email</div>
+          </div>
+        </div>
+        <span class="text-xs text-slate-500">Hace 14h</span>
+      </div>
+      <div class="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10">
+        <div class="flex items-center gap-3">
+          <span class="text-indigo-400 text-xs">●</span>
+          <div>
+            <div class="text-sm">Subiste a #6 en Google Maps — "hotel boutique cartagena"</div>
+            <div class="text-xs text-slate-400">Enviado a Telegram</div>
+          </div>
+        </div>
+        <span class="text-xs text-slate-500">Hace 1d</span>
+      </div>
     </div>
   </div>
 </div>
