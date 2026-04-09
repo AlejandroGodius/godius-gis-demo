@@ -603,6 +603,7 @@
       <span class="badge badge-amber">4 PENDIENTES</span>
     </div>
     <div class="space-y-3">
+      <!-- REVIEW 1: Negativa Booking -->
       <div class="bg-rose-500/5 border border-rose-500/20 rounded-xl p-4">
         <div class="flex justify-between items-start">
           <div>
@@ -611,11 +612,17 @@
           </div>
           <span class="text-xs text-rose-400 ml-4">4h</span>
         </div>
+        <div class="mt-3 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
+          <div class="text-xs text-indigo-300 font-semibold mb-1">💡 RESPUESTA SUGERIDA</div>
+          <p class="text-xs text-slate-300 leading-relaxed" id="resp1">Estimada María, lamentamos mucho la molestia con el aire acondicionado. Hemos programado la revisión técnica de la habitación 304 esta misma mañana. Nos alegra que el desayuno haya sido de su agrado. Nos encantaría tener la oportunidad de ofrecerle una mejor experiencia en su próxima visita. — Equipo Villa Índigo</p>
+        </div>
         <div class="flex gap-2 mt-3">
-          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300">📋 Copiar respuesta IA</button>
-          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300">🔗 Abrir en Booking</button>
+          <button onclick="copyResponse('resp1', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">📋 Copiar respuesta</button>
+          <a href="https://admin.booking.com/hotel/hoteladmin/extranet_ng/manage/replies.html" target="_blank" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition inline-flex items-center gap-1">🔗 Abrir en Booking ↗</a>
         </div>
       </div>
+
+      <!-- REVIEW 2: 5 estrellas Google -->
       <div class="bg-emerald-500/5 border border-emerald-500/20 rounded-xl p-4">
         <div class="flex justify-between items-start">
           <div>
@@ -624,11 +631,17 @@
           </div>
           <span class="text-xs text-slate-500 ml-4">6h</span>
         </div>
+        <div class="mt-3 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
+          <div class="text-xs text-indigo-300 font-semibold mb-1">💡 RESPUESTA SUGERIDA</div>
+          <p class="text-xs text-slate-300 leading-relaxed" id="resp2">Thank you so much, James! We're thrilled you enjoyed the breakfast and our rooftop views — they're truly one of the best parts of staying with us. We look forward to welcoming you back to Cartagena. — Villa Índigo Team</p>
+        </div>
         <div class="flex gap-2 mt-3">
-          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300">📋 Copiar respuesta IA</button>
-          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300">🔗 Abrir en Google</button>
+          <button onclick="copyResponse('resp2', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">📋 Copiar respuesta</button>
+          <a href="https://business.google.com" target="_blank" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition inline-flex items-center gap-1">🔗 Abrir en Google ↗</a>
         </div>
       </div>
+
+      <!-- REVIEW 3: 4 estrellas TripAdvisor en francés -->
       <div class="bg-emerald-500/5 border border-emerald-500/20 rounded-xl p-4">
         <div class="flex justify-between items-start">
           <div>
@@ -637,11 +650,17 @@
           </div>
           <span class="text-xs text-slate-500 ml-4">1d</span>
         </div>
+        <div class="mt-3 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
+          <div class="text-xs text-indigo-300 font-semibold mb-1">💡 RESPUESTA SUGERIDA (FR)</div>
+          <p class="text-xs text-slate-300 leading-relaxed" id="resp3">Merci beaucoup Claire pour votre avis ! Nous sommes ravis que vous ayez apprécié notre architecture coloniale et l'espace de votre chambre. Nous travaillons actuellement à améliorer notre connexion WiFi pour offrir une meilleure expérience. Au plaisir de vous revoir à Cartagena. — Équipe Villa Índigo</p>
+        </div>
         <div class="flex gap-2 mt-3">
-          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300">📋 Copiar respuesta IA (FR)</button>
-          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300">🔗 Abrir en TripAdvisor</button>
+          <button onclick="copyResponse('resp3', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">📋 Copiar respuesta</button>
+          <a href="https://www.tripadvisor.com/ManagementCenter" target="_blank" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition inline-flex items-center gap-1">🔗 Abrir en TripAdvisor ↗</a>
         </div>
       </div>
+
+      <!-- REVIEW 4: 4 estrellas Google -->
       <div class="bg-white/5 border border-white/10 rounded-xl p-4">
         <div class="flex justify-between items-start">
           <div>
@@ -650,9 +669,13 @@
           </div>
           <span class="text-xs text-slate-500 ml-4">2d</span>
         </div>
+        <div class="mt-3 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
+          <div class="text-xs text-indigo-300 font-semibold mb-1">💡 RESPUESTA SUGERIDA</div>
+          <p class="text-xs text-slate-300 leading-relaxed" id="resp4">¡Gracias por tu reseña, Ana! Nos encanta saber que disfrutaste de la ubicación y del hotel. Tomamos nota sobre el servicio de recepción — estamos trabajando en capacitaciones para ofrecer una atención aún más ágil. ¡Esperamos recibirte de nuevo pronto! — Equipo Villa Índigo</p>
+        </div>
         <div class="flex gap-2 mt-3">
-          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300">📋 Copiar respuesta IA</button>
-          <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300">🔗 Abrir en Google</button>
+          <button onclick="copyResponse('resp4', this)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/30 transition">📋 Copiar respuesta</button>
+          <a href="https://business.google.com" target="_blank" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition inline-flex items-center gap-1">🔗 Abrir en Google ↗</a>
         </div>
       </div>
     </div>
@@ -1483,6 +1506,21 @@ function closeCompetitor() {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCompetitor(); });
+
+function copyResponse(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const original = btn.innerHTML;
+    btn.innerHTML = '✓ Copiado al portapapeles';
+    btn.classList.add('bg-emerald-500/20', 'border-emerald-500/40', 'text-emerald-300');
+    btn.classList.remove('bg-indigo-500/20', 'border-indigo-500/40', 'text-indigo-300');
+    setTimeout(() => {
+      btn.innerHTML = original;
+      btn.classList.remove('bg-emerald-500/20', 'border-emerald-500/40', 'text-emerald-300');
+      btn.classList.add('bg-indigo-500/20', 'border-indigo-500/40', 'text-indigo-300');
+    }, 2000);
+  });
+}
 </script>
 
 </body>
